@@ -1,6 +1,6 @@
 // Made with Amplify Shader Editor v1.9.8.1
 // Available at the Unity Asset Store - http://u3d.as/y3X 
-Shader "Fx_ADD_HDR"
+Shader "Firework_HDR"
 {
 	Properties
 	{
@@ -8,7 +8,7 @@ Shader "Fx_ADD_HDR"
 		_MainTex ("Particle Texture", 2D) = "white" {}
 		_InvFade ("Soft Particles Factor", Range(0.01,3.0)) = 1.0
 		_MainTex("_MainTex", 2D) = "white" {}
-		_HDR("HDR", Float) = 0
+		_HDR1("HDR", Float) = 0
 		[HideInInspector] _texcoord( "", 2D ) = "white" {}
 
 	}
@@ -21,7 +21,7 @@ Shader "Fx_ADD_HDR"
 		LOD 0
 
 			Tags { "Queue"="Transparent" "IgnoreProjector"="True" "RenderType"="Transparent" "PreviewType"="Plane" }
-			Blend SrcAlpha One
+			Blend SrcAlpha OneMinusSrcAlpha
 			ColorMask RGB
 			Cull Off
 			Lighting Off
@@ -85,7 +85,7 @@ Shader "Fx_ADD_HDR"
 				uniform fixed4 _TintColor;
 				uniform float4 _MainTex_ST;
 				uniform float _InvFade;
-				uniform float _HDR;
+				uniform float _HDR1;
 
 
 				v2f vert ( appdata_t v  )
@@ -121,11 +121,11 @@ Shader "Fx_ADD_HDR"
 					#endif
 
 					float2 uv_MainTex = i.texcoord.xy * _MainTex_ST.xy + _MainTex_ST.zw;
-					float4 temp_output_5_0 = ( tex2D( _MainTex, uv_MainTex ) * i.color );
-					float4 appendResult12 = (float4(( (temp_output_5_0).rgb * _HDR ) , (temp_output_5_0).a));
+					float4 temp_output_40_0 = ( tex2D( _MainTex, uv_MainTex ) * i.color );
+					float4 appendResult45 = (float4(( (temp_output_40_0).rgb * _HDR1 ) , (temp_output_40_0).a));
 					
 
-					fixed4 col = appendResult12;
+					fixed4 col = appendResult45;
 					UNITY_APPLY_FOG(i.fogCoord, col);
 					return col;
 				}
@@ -139,25 +139,25 @@ Shader "Fx_ADD_HDR"
 }
 /*ASEBEGIN
 Version=19801
-Node;AmplifyShaderEditor.TexturePropertyNode;3;-384,-736;Inherit;True;Property;_MainTex;_MainTex;0;0;Fetch;True;0;0;0;False;0;False;None;None;False;white;Auto;Texture2D;-1;0;2;SAMPLER2D;0;SAMPLERSTATE;1
-Node;AmplifyShaderEditor.VertexColorNode;2;-208,-480;Inherit;False;0;5;COLOR;0;FLOAT;1;FLOAT;2;FLOAT;3;FLOAT;4
-Node;AmplifyShaderEditor.SamplerNode;4;-112,-736;Inherit;True;Property;_TextureSample0;Texture Sample 0;1;0;Create;True;0;0;0;False;0;False;-1;None;None;True;0;False;white;Auto;False;Object;-1;Auto;Texture2D;8;0;SAMPLER2D;;False;1;FLOAT2;0,0;False;2;FLOAT;0;False;3;FLOAT2;0,0;False;4;FLOAT2;0,0;False;5;FLOAT;1;False;6;FLOAT;0;False;7;SAMPLERSTATE;;False;6;COLOR;0;FLOAT;1;FLOAT;2;FLOAT;3;FLOAT;4;FLOAT3;5
-Node;AmplifyShaderEditor.SimpleMultiplyOpNode;5;240,-496;Inherit;False;2;2;0;COLOR;0,0,0,0;False;1;COLOR;0,0,0,0;False;1;COLOR;0
-Node;AmplifyShaderEditor.RangedFloatNode;6;544,-288;Inherit;False;Property;_HDR;HDR;1;0;Create;True;0;0;0;False;0;False;0;0;0;0;0;1;FLOAT;0
-Node;AmplifyShaderEditor.ComponentMaskNode;10;416,-496;Inherit;False;True;True;True;False;1;0;COLOR;0,0,0,0;False;1;FLOAT3;0
-Node;AmplifyShaderEditor.SimpleMultiplyOpNode;7;672,-496;Inherit;False;2;2;0;FLOAT3;0,0,0;False;1;FLOAT;0;False;1;FLOAT3;0
-Node;AmplifyShaderEditor.ComponentMaskNode;13;400,-400;Inherit;False;False;False;False;True;1;0;COLOR;0,0,0,0;False;1;FLOAT;0
-Node;AmplifyShaderEditor.DynamicAppendNode;12;912,-496;Inherit;False;COLOR;4;0;FLOAT3;0,0,0;False;1;FLOAT;0;False;2;FLOAT;0;False;3;FLOAT;0;False;1;COLOR;0
-Node;AmplifyShaderEditor.TemplateMultiPassMasterNode;0;1168,-496;Float;False;True;-1;3;AmplifyShaderEditor.MaterialInspector;0;11;Fx_ADD_HDR;0b6a9f8b4f707c74ca64c0be8e590de0;True;SubShader 0 Pass 0;0;0;SubShader 0 Pass 0;2;True;True;8;5;False;;1;False;;0;1;False;;0;False;;False;False;False;False;False;False;False;False;False;False;False;False;True;2;False;;False;True;True;True;True;False;0;False;;False;False;False;False;False;False;False;False;False;True;2;False;;True;3;False;;False;True;4;Queue=Transparent=Queue=0;IgnoreProjector=True;RenderType=Transparent=RenderType;PreviewType=Plane;False;False;0;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;True;3;False;0;;0;0;Standard;0;0;1;True;False;;False;0
-WireConnection;4;0;3;0
-WireConnection;5;0;4;0
-WireConnection;5;1;2;0
-WireConnection;10;0;5;0
-WireConnection;7;0;10;0
-WireConnection;7;1;6;0
-WireConnection;13;0;5;0
-WireConnection;12;0;7;0
-WireConnection;12;3;13;0
-WireConnection;0;0;12;0
+Node;AmplifyShaderEditor.TexturePropertyNode;37;-448,-272;Inherit;True;Property;_MainTex;_MainTex;0;0;Fetch;True;0;0;0;False;0;False;None;8c4a7fca2884fab419769ccc0355c0c1;False;white;Auto;Texture2D;-1;0;2;SAMPLER2D;0;SAMPLERSTATE;1
+Node;AmplifyShaderEditor.VertexColorNode;38;-272,-16;Inherit;False;0;5;COLOR;0;FLOAT;1;FLOAT;2;FLOAT;3;FLOAT;4
+Node;AmplifyShaderEditor.SamplerNode;39;-176,-272;Inherit;True;Property;_TextureSample1;Texture Sample 0;1;0;Create;True;0;0;0;False;0;False;-1;None;None;True;0;False;white;Auto;False;Object;-1;Auto;Texture2D;8;0;SAMPLER2D;;False;1;FLOAT2;0,0;False;2;FLOAT;0;False;3;FLOAT2;0,0;False;4;FLOAT2;0,0;False;5;FLOAT;1;False;6;FLOAT;0;False;7;SAMPLERSTATE;;False;6;COLOR;0;FLOAT;1;FLOAT;2;FLOAT;3;FLOAT;4;FLOAT3;5
+Node;AmplifyShaderEditor.SimpleMultiplyOpNode;40;176,-32;Inherit;False;2;2;0;COLOR;0,0,0,0;False;1;COLOR;0,0,0,0;False;1;COLOR;0
+Node;AmplifyShaderEditor.RangedFloatNode;41;480,176;Inherit;False;Property;_HDR1;HDR;1;0;Create;True;0;0;0;False;0;False;0;5;0;0;0;1;FLOAT;0
+Node;AmplifyShaderEditor.ComponentMaskNode;42;352,-32;Inherit;False;True;True;True;False;1;0;COLOR;0,0,0,0;False;1;FLOAT3;0
+Node;AmplifyShaderEditor.SimpleMultiplyOpNode;43;608,-32;Inherit;False;2;2;0;FLOAT3;0,0,0;False;1;FLOAT;0;False;1;FLOAT3;0
+Node;AmplifyShaderEditor.ComponentMaskNode;44;352,48;Inherit;False;False;False;False;True;1;0;COLOR;0,0,0,0;False;1;FLOAT;0
+Node;AmplifyShaderEditor.DynamicAppendNode;45;848,-32;Inherit;False;COLOR;4;0;FLOAT3;0,0,0;False;1;FLOAT;0;False;2;FLOAT;0;False;3;FLOAT;0;False;1;COLOR;0
+Node;AmplifyShaderEditor.TemplateMultiPassMasterNode;35;1040,-32;Float;False;True;-1;3;AmplifyShaderEditor.MaterialInspector;0;11;Firework_HDR;0b6a9f8b4f707c74ca64c0be8e590de0;True;SubShader 0 Pass 0;0;0;SubShader 0 Pass 0;2;False;True;2;5;False;;10;False;;0;1;False;;0;False;;False;False;False;False;False;False;False;False;False;False;False;False;True;2;False;;False;True;True;True;True;False;0;False;;False;False;False;False;False;False;False;False;False;True;2;False;;True;3;False;;False;True;4;Queue=Transparent=Queue=0;IgnoreProjector=True;RenderType=Transparent=RenderType;PreviewType=Plane;False;False;0;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;True;3;False;0;;0;0;Standard;0;0;1;True;False;;False;0
+WireConnection;39;0;37;0
+WireConnection;40;0;39;0
+WireConnection;40;1;38;0
+WireConnection;42;0;40;0
+WireConnection;43;0;42;0
+WireConnection;43;1;41;0
+WireConnection;44;0;40;0
+WireConnection;45;0;43;0
+WireConnection;45;3;44;0
+WireConnection;35;0;45;0
 ASEEND*/
-//CHKSM=73FEA488F30ADC20A01FBFCEEB3C53C149A6A1A9
+//CHKSM=4062A1DA87E4EDD27B4C08F4D0A496AF26AE9612
