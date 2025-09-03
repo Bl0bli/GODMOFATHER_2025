@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      triangle_ballon_sprite_0: 3367815897741168131
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
