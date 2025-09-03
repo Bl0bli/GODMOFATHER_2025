@@ -21,7 +21,8 @@ public class Bullet : MonoBehaviour
         _lifeTime = Mathf.Lerp(_lifeTime, _MAXlifeTime, timePressed);
         _speed = Mathf.Lerp(_speed, _MAXSpeed, timePressed);
         _size = Mathf.Lerp(_size, _MAXSize, timePressed);
-        rb.AddForce(direction.normalized * _speed * 100, ForceMode2D.Impulse);
+        transform.localScale = new Vector3(_size, _size, _size);
+        rb.AddForce(direction.normalized * _speed * 50, ForceMode2D.Impulse);
         StartCoroutine(LifeTimeRoutine(timePressed));
     }
 
@@ -29,7 +30,7 @@ public class Bullet : MonoBehaviour
     {
         while (_lifeTime > 0f)
         {
-            _size = Mathf.Lerp(_size, _MAXSize, _lifeTime);
+            _size = Mathf.Lerp(_size / 4, _size, _lifeTime);
             transform.localScale = new Vector3(_size, _size, _size);
             _lifeTime -= Time.deltaTime;
             yield return null;

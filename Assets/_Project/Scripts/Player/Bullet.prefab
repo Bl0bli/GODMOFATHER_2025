@@ -105,7 +105,7 @@ MonoBehaviour:
   _MAXlifeTime: 5
   _MAXSize: 5
   _MAXScore: 10
-  _MAXSpeed: 10
+  _MAXSpeed: 2
   rb: {fileID: 6719151814563405532}
 --- !u!50 &6719151814563405532
 Rigidbody2D:
