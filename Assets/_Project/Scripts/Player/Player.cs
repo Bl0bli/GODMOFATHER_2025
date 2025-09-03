@@ -22,6 +22,7 @@ public class Player : MonoBehaviour
     [SerializeField] private Rigidbody2D rb;
     [SerializeField] private Weapon _weapon;
     [SerializeField] private PlayerStats _stats;
+    [SerializeField] private SpriteRenderer _renderer;
     
     private List<PowerUp> activeEffects = new List<PowerUp>();
     private float _timePressed = 0f;
@@ -33,6 +34,11 @@ public class Player : MonoBehaviour
     {
         get{return _moveSpeed;}
         set{_moveSpeed = value;}
+    }
+    public SpriteRenderer Renderer
+    {
+        get{return _renderer;}
+        set{_renderer = value;}
     }
 
     public Weapon Weapon => _weapon;

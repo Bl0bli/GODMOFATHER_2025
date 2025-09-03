@@ -7,6 +7,7 @@ using UnityEngine.Events;
 public class GameManager : MonoBehaviour
 {
     [SerializeField] private float _gameTime = 120f;
+    [SerializeField] private Sprite[] _playerSprites;
     
     public event Action<float> OnUpdateTime;
     public event Action OnEndGame;
@@ -25,7 +26,11 @@ public class GameManager : MonoBehaviour
     public int GetPlayerID(Player player)
     {
         _playerAmount++;
-        if(player != null) _players.Add(player);
+        if(player != null)
+        {
+            _players.Add(player);
+            player.Renderer.sprite = _playerSprites[_playerAmount];
+        }
         if (_playerAmount >= 2) BeginGame();
         return _playerAmount;
     }
