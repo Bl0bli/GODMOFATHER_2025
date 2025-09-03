@@ -5,6 +5,7 @@ using UnityEngine;
 public class Bullet : MonoBehaviour
 {
     [SerializeField, Range(1,10)] private float _MAXlifeTime = 5f;
+    [SerializeField, Range(1, 10)] private float _MINlifeTime = 1f;
     [SerializeField, Range(1, 5)] private float _MAXSize = 5f;
     [SerializeField, Range(1, 100)] private int _MAXScore = 10;
     [SerializeField, Range(1f, 10f)] private float _MAXSpeed = 4f;
@@ -18,7 +19,7 @@ public class Bullet : MonoBehaviour
     public void StartLifeTime(float timePressed, Vector2 direction)
     {
         _score = Mathf.Lerp(_score, _MAXScore, timePressed);
-        _lifeTime = Mathf.Lerp(_lifeTime, _MAXlifeTime, timePressed);
+        _lifeTime = Mathf.Lerp(_MINlifeTime, _MAXlifeTime, timePressed);
         _speed = Mathf.Lerp(_speed, _MAXSpeed, timePressed);
         _size = Mathf.Lerp(_size, _MAXSize, timePressed);
         transform.localScale = new Vector3(_size, _size, _size);
