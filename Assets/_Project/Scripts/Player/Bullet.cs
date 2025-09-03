@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using UnityEngine;
 
-public class Bullet : MonoBehaviour
+public class Bullet : MonoBehaviour, IInteractable
 {
     [SerializeField, Range(1,10)] private float _MAXlifeTime = 5f;
     [SerializeField, Range(1, 10)] private float _MINlifeTime = 1f;
@@ -13,12 +13,19 @@ public class Bullet : MonoBehaviour
     
     float _lifeTime = 0f;
     float _size = 0f;
-    float _score = 0f;
+    private int _score = 0;
     float _speed = 0f;
+	Player _shooter;
+    
+    public int Score => _score;
+    public Player Shooter => _shooter;
+    
+    public void InitShooter(Player shooter) => _shooter = shooter;
+   
 
     public void StartLifeTime(float timePressed, Vector2 direction)
     {
-        _score = Mathf.Lerp(_score, _MAXScore, timePressed);
+        _score = (int)Mathf.Lerp(_score, _MAXScore, timePressed);
         _lifeTime = Mathf.Lerp(_MINlifeTime, _MAXlifeTime, timePressed);
         _speed = Mathf.Lerp(_speed, _MAXSpeed, timePressed);
         _size = Mathf.Lerp(_size, _MAXSize, timePressed);
@@ -37,5 +44,10 @@ public class Bullet : MonoBehaviour
             yield return null;
         }
         Destroy(gameObject);
+    }
+
+    public void Trigger(Player player = null)
+    {
+        if(player != null) player.Hit(this);
     }
 }

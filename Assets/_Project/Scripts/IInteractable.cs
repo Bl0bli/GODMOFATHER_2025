@@ -3,5 +3,5 @@ using UnityEngine;
 
 public interface IInteractable
 {
-    void Trigger();
+    void Trigger(Player player = null);
 }
