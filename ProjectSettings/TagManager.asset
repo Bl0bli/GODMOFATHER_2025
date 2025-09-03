@@ -50,5 +50,8 @@ TagManager:
   - name: Gameplay
     uniqueID: 2469904457
     locked: 0
+  - name: VFX
+    uniqueID: 3698715277
+    locked: 0
   m_RenderingLayers:
   - Default
