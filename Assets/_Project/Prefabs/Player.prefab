@@ -423,4 +423,4 @@ MonoBehaviour:
       m_Calls: []
   _projectile: {fileID: 798576106692529145, guid: 3e1f5481e4348e240a4e4fdc3535df0e, type: 3}
   _anchorFire: {fileID: 221884798766698865}
-  _player: {fileID: 0}
+  _player: {fileID: 7207634063190040183}
