@@ -1893,6 +1893,12 @@ MonoBehaviour:
   _playerSprites:
   - {fileID: 5878334903976641363, guid: 1c1cf515d6c59e54a9ca76025bb0f785, type: 3}
   - {fileID: 3367815897741168131, guid: f4efbe5b04625af408c9043377b52a71, type: 3}
+  _playerSpritesOuch:
+  - {fileID: -14762789833536346, guid: a4794ad45f7b9c0419f1c28366e4ec27, type: 3}
+  - {fileID: -7641850027067111768, guid: 9b57132f4a3ca854ca51257c6bba2150, type: 3}
+  _playerDead:
+  - {fileID: 8041781177645818395, guid: c3e7495201ca5f4458d45dc06dfcc195, type: 3}
+  - {fileID: 7302222968051661987, guid: 0556f193a4eb43945b3287502f30a086, type: 3}
   UnityOnShowUIEndGame:
     m_PersistentCalls:
       m_Calls:
@@ -7902,17 +7908,21 @@ PrefabInstance:
       propertyPath: m_Name
       value: PowerUpPicker (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 1999578703093900259, guid: 0d7ba80cd2fd3a0429f9166f85a9ba9f, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3550068638520889441, guid: 0d7ba80cd2fd3a0429f9166f85a9ba9f, type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.5
+      value: 0.74999994
       objectReference: {fileID: 0}
     - target: {fileID: 3550068638520889441, guid: 0d7ba80cd2fd3a0429f9166f85a9ba9f, type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.5
+      value: 0.74999994
       objectReference: {fileID: 0}
     - target: {fileID: 3550068638520889441, guid: 0d7ba80cd2fd3a0429f9166f85a9ba9f, type: 3}
       propertyPath: m_LocalScale.z
-      value: 0.5
+      value: 0.74999994
       objectReference: {fileID: 0}
     - target: {fileID: 3550068638520889441, guid: 0d7ba80cd2fd3a0429f9166f85a9ba9f, type: 3}
       propertyPath: m_LocalPosition.x
@@ -13939,15 +13949,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3550068638520889441, guid: 0d7ba80cd2fd3a0429f9166f85a9ba9f, type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.5
+      value: 0.74999994
       objectReference: {fileID: 0}
     - target: {fileID: 3550068638520889441, guid: 0d7ba80cd2fd3a0429f9166f85a9ba9f, type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.5
+      value: 0.74999994
       objectReference: {fileID: 0}
     - target: {fileID: 3550068638520889441, guid: 0d7ba80cd2fd3a0429f9166f85a9ba9f, type: 3}
       propertyPath: m_LocalScale.z
-      value: 0.5
+      value: 0.74999994
       objectReference: {fileID: 0}
     - target: {fileID: 3550068638520889441, guid: 0d7ba80cd2fd3a0429f9166f85a9ba9f, type: 3}
       propertyPath: m_LocalPosition.x
