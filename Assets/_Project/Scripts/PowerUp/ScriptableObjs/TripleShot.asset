@@ -12,4 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c857bc3a0c0389145997f2d69d43b0e2, type: 3}
   m_Name: TripleShot
   m_EditorClassIdentifier: 
+  _name: TripleShot
+  _doesHaveADuration: 0
   duration: 5
+  _icon: {fileID: 2071003602, guid: b95edd45f5c31a54aba606f497e2363a, type: 3}

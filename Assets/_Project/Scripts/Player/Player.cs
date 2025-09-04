@@ -130,6 +130,7 @@ public class Player : MonoBehaviour
                     StopCoroutine(chargeShot);
                     chargeShot = null;
                     UnityOnShoot?.Invoke();
+                    if (_aimDir.sqrMagnitude < 0.01f) _aimDir = Vector2.right;
                     _weapon.Fire(_timePressed, _aimDir);
                     _timePressed = 0f;
                 }
@@ -143,7 +144,7 @@ public class Player : MonoBehaviour
         while (_timePressed < _MAXTimePressed)
         {
             _timePressed += Time.deltaTime;
-            _slider.value = Mathf.Lerp(0, 1f, (_timePressed / _MAXTimePressed));
+            _slider.value = Mathf.InverseLerp(0, _MAXTimePressed, _timePressed);
             UnityOnCharge?.Invoke();
             yield return null;
         }

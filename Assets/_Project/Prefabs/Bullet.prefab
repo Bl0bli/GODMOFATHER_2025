@@ -103,10 +103,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _MAXlifeTime: 5
-  _MAXSize: 5
+  _MINlifeTime: 1
+  _MAXSize: 2
   _MAXScore: 10
-  _MAXSpeed: 2
+  _MAXSpeed: 1.25
   rb: {fileID: 6719151814563405532}
+  UnityOnDestroy:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!50 &6719151814563405532
 Rigidbody2D:
   serializedVersion: 5
