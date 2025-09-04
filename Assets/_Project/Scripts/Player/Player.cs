@@ -11,7 +11,7 @@ public class Player : MonoBehaviour
     [Header("Paramètres atomiques")]
     [SerializeField] private float _MAXTimePressed = 3f;
     [SerializeField, Range(0.1f, 1f)] private float _moveSpeed = 5f;
-    [SerializeField] private float _weaponRadius = 1;
+    [SerializeField, Range(0.1f, 5f)] private float _weaponRadius = 1;
     
     [Header("Event pour les fx")]
     public UnityEvent UnityOnHit; 
@@ -121,18 +121,18 @@ public class Player : MonoBehaviour
     #region Collisions
     public void Hit(Bullet bullet = null)
     {
-        if(bullet != null)
+        if(bullet != null && bullet.Shooter != null)
         {
             UnityOnHit?.Invoke();
-            bullet.Shooter.HandleBulletHit(bullet);
+            if(bullet.Shooter.PlayerID != _playerID) bullet.Shooter.HandleScoreHit(bullet.Score);
+            else bullet.Shooter.HandleScoreHit(- bullet.Score);
         }
     }
 
-    public void HandleBulletHit(Bullet bullet)
+    public void HandleScoreHit(int score)
     {
-        if(bullet.Shooter.PlayerID != _playerID)
-        _stats.AddScore(bullet.Score);
-        else _stats.AddScore(-bullet.Score);
+        _stats.AddScore(score);
+        Debug.Log($"Player {_playerID} score: {_stats.Score}");
     }
 
     private void OnCollisionEnter2D(Collision2D other)
