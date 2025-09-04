@@ -102,10 +102,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7ccb5587c118d664e8bbd40223095eb5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _MAXlifeTime: 5
-  _MAXSize: 5
+  _MAXlifeTime: 2.4
+  _MINlifeTime: 1
+  _MAXSize: 1.4
   _MAXScore: 10
-  _MAXSpeed: 2
+  _MAXSpeed: 1.75
   rb: {fileID: 6719151814563405532}
 --- !u!50 &6719151814563405532
 Rigidbody2D:
