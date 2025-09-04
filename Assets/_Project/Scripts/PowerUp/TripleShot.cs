@@ -10,6 +10,6 @@ public class TripleShot: PowerUp
 
     public override void Remove(Player player)
     {
-        player.Weapon.EnableTripleShot();
+        player.Weapon.DisableTripleShot();
     }
 }
