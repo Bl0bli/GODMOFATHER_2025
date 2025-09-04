@@ -105,6 +105,8 @@ public class Player : MonoBehaviour
         {
             if (context.performed)
             {
+                if(chargeShot != null) StopCoroutine(chargeShot);
+                _timePressed = 0f;
                 chargeShot = StartCoroutine(ChargeShot());
             }
             else if (context.canceled)

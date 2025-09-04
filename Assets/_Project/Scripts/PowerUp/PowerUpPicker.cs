@@ -22,18 +22,17 @@ public class PowerUpPicker : MonoBehaviour, IInteractable
     private void Awake()
     {
         sr = GetComponent<SpriteRenderer>();
-        
-        if (possibleEffects != null && possibleEffects.Length > 0)
-        {
-            chosenEffect = possibleEffects[Random.Range(0, possibleEffects.Length)];
-            //sr.sprite = chosenEffect.Icon;
-        }
     }
 
     public void Trigger(Player player = null)
     {
         if (player != null)
         {
+            if (possibleEffects != null && possibleEffects.Length > 0)
+            {
+                chosenEffect = possibleEffects[Random.Range(0, possibleEffects.Length)];
+                //sr.sprite = chosenEffect.Icon;
+            }
             player.AddPowerUp(chosenEffect);
             Debug.Log($"ADD POWER UP {chosenEffect.Name}");
         }
