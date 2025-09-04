@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 0e779fc5f02bf76488ce724e3d9da177
+guid: 638033f79f68dd3498e97a05aa52362c
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -2519592993557711579
-    second: ballon 4_0
+      213: 1025804119406657408
+    second: winscreen_gangsta_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,13 +100,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: ballon 4_0
+      name: winscreen_gangsta_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 152
-        height: 635
+        width: 1507
+        height: 784
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -115,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 525fd60958b980dd0800000000000000
-      internalID: -2519592993557711579
+      spriteID: 08fbd5269636c3e00800000000000000
+      internalID: 1025804119406657408
       vertices: []
       indices: 
       edges: []
@@ -134,8 +134,7 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable:
-      ballon 4_0: -2519592993557711579
+    nameFileIdTable: {}
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
