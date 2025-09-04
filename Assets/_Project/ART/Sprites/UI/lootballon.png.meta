@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 0e779fc5f02bf76488ce724e3d9da177
+guid: 6bf49380bb7e63849ad56291b767e6bf
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -2519592993557711579
-    second: ballon 4_0
+      213: -352052695375733653
+    second: lootballon_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,13 +100,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: ballon 4_0
+      name: lootballon_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 152
-        height: 635
+        width: 252
+        height: 458
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -115,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 525fd60958b980dd0800000000000000
-      internalID: -2519592993557711579
+      spriteID: b6c19e550f14d1bf0800000000000000
+      internalID: -352052695375733653
       vertices: []
       indices: 
       edges: []
@@ -135,7 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      ballon 4_0: -2519592993557711579
+      lootballon_0: -352052695375733653
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

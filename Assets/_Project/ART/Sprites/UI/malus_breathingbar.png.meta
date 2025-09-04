@@ -1,10 +1,16 @@
 fileFormatVersion: 2
-guid: 0e779fc5f02bf76488ce724e3d9da177
+guid: 34fa5589a70ccaf4cbff714b42c54c4e
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -2519592993557711579
-    second: ballon 4_0
+      213: 888177649405867184
+    second: malus_breathingbar_0
+  - first:
+      213: -3559268277714616602
+    second: malus_breathingbar_1
+  - first:
+      213: -8677758321647164243
+    second: malus_breathingbar_2
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,13 +106,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: ballon 4_0
+      name: malus_breathingbar_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 152
-        height: 635
+        x: 11
+        y: 225
+        width: 26
+        height: 25
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -115,8 +121,52 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 525fd60958b980dd0800000000000000
-      internalID: -2519592993557711579
+      spriteID: 0b4374acdd0735c00800000000000000
+      internalID: 888177649405867184
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: malus_breathingbar_1
+      rect:
+        serializedVersion: 2
+        x: 23
+        y: 0
+        width: 70
+        height: 231
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6eef086fb50fa9ec0800000000000000
+      internalID: -3559268277714616602
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: malus_breathingbar_2
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 186
+        width: 36
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: da4e78f78c8629780800000000000000
+      internalID: -8677758321647164243
       vertices: []
       indices: 
       edges: []
@@ -134,8 +184,7 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable:
-      ballon 4_0: -2519592993557711579
+    nameFileIdTable: {}
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
