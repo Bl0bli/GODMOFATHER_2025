@@ -18,6 +18,8 @@ public class GameManager : MonoBehaviour
     
     private int _playerAmount = -1;
     List<Player> _players = new List<Player>();
+    
+    public List<Player> Players => _players;
     private Coroutine _timerRoutine;
     private void Awake()
     {
