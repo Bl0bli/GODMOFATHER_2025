@@ -11,6 +11,7 @@ public class Bullet : MonoBehaviour, IInteractable
     [SerializeField, Range(1, 100)] private int _MAXScore = 10;
     [SerializeField, Range(1f, 10f)] private float _MAXSpeed = 4f;
     [SerializeField] Rigidbody2D rb;
+    [SerializeField] private SpriteRenderer _renderer;
 
     public UnityEvent UnityOnDestroy;
     
@@ -23,6 +24,7 @@ public class Bullet : MonoBehaviour, IInteractable
     
     public int Score => _score;
     public Player Shooter => _shooter;
+    public SpriteRenderer Renderer => _renderer;
     
     public void InitShooter(Player shooter) => _shooter = shooter;
    

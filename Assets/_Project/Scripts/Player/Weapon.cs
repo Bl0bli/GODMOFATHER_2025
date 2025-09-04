@@ -41,6 +41,7 @@ public class Weapon : MonoBehaviour
         Bullet bulletScript = bullet.GetComponent<Bullet>();
         bulletScript.InitShooter(_player);
         
+        
         Vector2 newDir = Quaternion.Euler(0, 0, angle) * dir;
         bulletScript.StartLifeTime(timePressed, newDir);
     }
