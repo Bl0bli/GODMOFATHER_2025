@@ -177,6 +177,7 @@ MonoBehaviour:
   _weaponRadius: 0.1
   _pushBack: 0
   _pushBackForce: 1
+  _invulnerabilityDuration: 1
   UnityOnHit:
     m_PersistentCalls:
       m_Calls: []
@@ -187,6 +188,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   rb: {fileID: 7242205879262756897}
+  boxCollider: {fileID: 2697735322774024693}
+  _weaponAnchor: {fileID: 5953532554077382409}
   _weapon: {fileID: 2129547045966248589}
   _stats: {fileID: 8596439967264755533}
   _renderer: {fileID: 5985703182907528531}
@@ -354,7 +357,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 85cad07b9604944968afa477191f4072, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _score: 0
+  _MAXLife: 0
+  _autoHealCooldown: 5
+  _autoHealSpeedinSeconds: 3
 --- !u!1 &8379236354469557105
 GameObject:
   m_ObjectHideFlags: 0

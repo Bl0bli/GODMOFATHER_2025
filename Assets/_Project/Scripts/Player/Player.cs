@@ -20,6 +20,7 @@ public class Player : MonoBehaviour
     [SerializeField, Range(0.1f, 5f)] private float _weaponRadius = 1;
     [SerializeField] bool _pushBack = false;
     [SerializeField, ShowIf("_pushBack")] private float _pushBackForce = 1f;
+    [SerializeField] private float _invulnerabilityDuration = 1f;
     
     [Header("Event pour les fx")]
     public UnityEvent UnityOnHit; 
@@ -28,7 +29,7 @@ public class Player : MonoBehaviour
     
     [Header("References")]
     [SerializeField] private Rigidbody2D rb;
-
+    [SerializeField] private BoxCollider2D boxCollider;
     [SerializeField] private Transform _weaponAnchor;
     [SerializeField] private Weapon _weapon;
     [SerializeField] private PlayerStats _stats;
@@ -40,6 +41,7 @@ public class Player : MonoBehaviour
     private Vector2 _moveInput;
     private Vector2 _currentVelocity;
     private Coroutine chargeShot;
+    private Coroutine _invulnerabilityCooldown;
     private int _playerID = 0;
 
     public float MoveSpeed
@@ -147,7 +149,7 @@ public class Player : MonoBehaviour
     #region Collisions
     public void Hit(Bullet bullet = null)
     {
-        if(bullet != null && bullet.Shooter != null)
+        /*if(bullet != null && bullet.Shooter != null)
         {
             UnityOnHit?.Invoke();
             
@@ -167,14 +169,25 @@ public class Player : MonoBehaviour
                 bullet.Shooter.HandleScoreHit(- bullet.Score);
                 bullet.EndLifeTime();
             }
+        }*/
+        if (bullet != null)
+        {
+            _stats.UpdateLife(-bullet.Score);
+            bullet.EndLifeTime();
+            if (_invulnerabilityCooldown != null)
+            {
+                StopCoroutine(_invulnerabilityCooldown);
+                _invulnerabilityCooldown = null;
+                _invulnerabilityCooldown = StartCoroutine(InvulnerabilityCooldown());
+            }
         }
     }
 
-    public void HandleScoreHit(int score)
+    /*public void HandleScoreHit(int score)
     {
         _stats.AddScore(score);
         Debug.Log($"Player {_playerID} score: {_stats.Score}");
-    }
+    }*/
 
     private void OnCollisionEnter2D(Collision2D other)
     {
@@ -220,6 +233,13 @@ public class Player : MonoBehaviour
 
         effect.Remove(this);
         activeEffects.Remove(effect);
+    }
+
+    IEnumerator InvulnerabilityCooldown()
+    {
+        boxCollider.enabled = false;
+        yield return new WaitForSeconds(_invulnerabilityDuration);
+        boxCollider.enabled = true;
     }
     
     #endregion
