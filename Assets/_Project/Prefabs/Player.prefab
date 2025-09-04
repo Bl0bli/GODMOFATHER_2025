@@ -1,5 +1,37 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1990585540332037116
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5953532554077382409}
+  m_Layer: 0
+  m_Name: anchorRotWeapon
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5953532554077382409
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1990585540332037116}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: -1, z: 0, w: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1935057671891147140}
+  m_Father: {fileID: 5448355281742019988}
+  m_LocalEulerAnglesHint: {x: 0, y: -180, z: 0}
 --- !u!1 &5631676496154670344
 GameObject:
   m_ObjectHideFlags: 0
@@ -25,7 +57,7 @@ Transform:
   m_GameObject: {fileID: 5631676496154670344}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.94, z: 0}
+  m_LocalPosition: {x: 0, y: 0.93, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -66,7 +98,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 1935057671891147140}
+  - {fileID: 5953532554077382409}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &5985703182907528531
@@ -136,9 +168,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ece9241495278164a98e40615e616684, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _offsetRot: -90
   _MAXTimePressed: 3
-  _moveSpeed: 0.5
-  _weaponRadius: 2
+  _MAXSpeed: 5
+  _acceleration: 10
+  _deceleration: 15
+  _moveSpeedMultiplier: 1
+  _weaponRadius: 0.1
+  _pushBack: 0
+  _pushBackForce: 1
   UnityOnHit:
     m_PersistentCalls:
       m_Calls: []
@@ -329,7 +367,7 @@ GameObject:
   - component: {fileID: 8987688439465767449}
   - component: {fileID: 2129547045966248589}
   m_Layer: 0
-  m_Name: Triangle
+  m_Name: Weapon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -343,13 +381,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8379236354469557105}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1.489, y: 0.31, z: 0}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.7, y: 0.2, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 221884798766698865}
-  m_Father: {fileID: 5448355281742019988}
+  m_Father: {fileID: 5953532554077382409}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &8987688439465767449
 SpriteRenderer:
@@ -395,7 +433,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: 7482667652216324306, guid: 75f5f34dc1b5347e0b8351032682f224, type: 3}
+  m_Sprite: {fileID: -5412244365820005827, guid: 597028e74af9667408f08d316303b873, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -418,9 +456,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c80d9185a4af04a478392d391af7f4ce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  OnShoot:
-    m_PersistentCalls:
-      m_Calls: []
   _projectile: {fileID: 798576106692529145, guid: 3e1f5481e4348e240a4e4fdc3535df0e, type: 3}
   _anchorFire: {fileID: 221884798766698865}
   _player: {fileID: 7207634063190040183}
+  _spreadAngle: 15
+  OnShoot:
+    m_PersistentCalls:
+      m_Calls: []

@@ -10,6 +10,7 @@ using UnityEngine.Networking;
 public class Player : MonoBehaviour
 {
     [Header("Paramètres atomiques")]
+    [SerializeField] private float _offsetRot;
     [SerializeField] private float _MAXTimePressed = 3f;
 
     [SerializeField] private float _MAXSpeed = 5f;
@@ -27,6 +28,8 @@ public class Player : MonoBehaviour
     
     [Header("References")]
     [SerializeField] private Rigidbody2D rb;
+
+    [SerializeField] private Transform _weaponAnchor;
     [SerializeField] private Weapon _weapon;
     [SerializeField] private PlayerStats _stats;
     [SerializeField] private SpriteRenderer _renderer;
@@ -60,6 +63,17 @@ public class Player : MonoBehaviour
         _playerID = GameManager.Instance.GetPlayerID(this);
     }
 
+    private void OnValidate()
+    {
+        if (_weapon == null) return;
+        
+        if (_aimDir.sqrMagnitude > 0.01f)
+        {
+            float angle = Mathf.Atan2(_aimDir.y, _aimDir.x) * Mathf.Rad2Deg;
+            _weapon.transform.rotation = Quaternion.Euler(0, 0, angle + _offsetRot);
+        }
+    }
+
     private void FixedUpdate()
     {
         Vector2 targetVelocity = _moveInput.normalized * _MAXSpeed;
@@ -88,14 +102,8 @@ public class Player : MonoBehaviour
             if (_aimDir.sqrMagnitude > 0.01f)
             {
                 float angle = Mathf.Atan2(_aimDir.y, _aimDir.x) * Mathf.Rad2Deg;
-            
-                Vector3 offset = new Vector3(_aimDir.x, _aimDir.y, 0).normalized * _weaponRadius;
-                _weapon.transform.position = transform.position + offset;
-            
-                _weapon.transform.rotation = Quaternion.Euler(0, 0, angle - 90f);
+                _weaponAnchor.transform.rotation = Quaternion.Euler(0, 0, angle + _offsetRot);
             }
-
-            //Debug.Log($"aim: {context.ReadValue<Vector2>()}");
         }
     }
 
