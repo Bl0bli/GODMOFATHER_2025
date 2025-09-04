@@ -6,6 +6,7 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
 using UnityEngine.Networking;
+using UnityEngine.UI;
 
 public class Player : MonoBehaviour
 {
@@ -34,6 +35,7 @@ public class Player : MonoBehaviour
     [SerializeField] private Weapon _weapon;
     [SerializeField] private PlayerStats _stats;
     [SerializeField] private SpriteRenderer _renderer;
+    [SerializeField] private Slider _slider;
     
     private List<PowerUp> activeEffects = new List<PowerUp>();
     private float _timePressed = 0f;
@@ -115,6 +117,7 @@ public class Player : MonoBehaviour
         {
             if (context.performed)
             {
+                _slider.value = 0f;
                 if(chargeShot != null) StopCoroutine(chargeShot);
                 _timePressed = 0f;
                 chargeShot = StartCoroutine(ChargeShot());
@@ -123,6 +126,7 @@ public class Player : MonoBehaviour
             {
                 if (chargeShot != null)
                 {
+                    _slider.value = 0f;
                     StopCoroutine(chargeShot);
                     chargeShot = null;
                     UnityOnShoot?.Invoke();
@@ -139,6 +143,7 @@ public class Player : MonoBehaviour
         while (_timePressed < _MAXTimePressed)
         {
             _timePressed += Time.deltaTime;
+            _slider.value = Mathf.Lerp(0, 1f, (_timePressed / _MAXTimePressed));
             UnityOnCharge?.Invoke();
             yield return null;
         }
