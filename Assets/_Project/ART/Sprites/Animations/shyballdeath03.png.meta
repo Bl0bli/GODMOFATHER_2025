@@ -334,7 +334,16 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      shyballdeath03_0: 8041781177645818395
+      shyballdeath03_1: 2644051872340129602
+      shyballdeath03_2: 6140102367296371507
+      shyballdeath03_3: -5174782019685879980
+      shyballdeath03_4: -3446111308984139183
+      shyballdeath03_5: -1279388972609902182
+      shyballdeath03_6: -908976407217444944
+      shyballdeath03_7: -1199796457269721785
+      shyballdeath03_8: -666383284590938390
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

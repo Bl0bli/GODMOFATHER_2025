@@ -334,7 +334,16 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      meanballdeath03_0: 7302222968051661987
+      meanballdeath03_1: -5951683063073591476
+      meanballdeath03_2: 2040134743647432979
+      meanballdeath03_3: 1754119958283953600
+      meanballdeath03_4: 8351047351845653530
+      meanballdeath03_5: -709818791084542154
+      meanballdeath03_6: -6776425805619554658
+      meanballdeath03_7: 766730971045442886
+      meanballdeath03_8: 220635396657454609
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
