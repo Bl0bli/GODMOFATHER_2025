@@ -60,6 +60,7 @@ public class Player : MonoBehaviour
     }
 
     public Weapon Weapon => _weapon;
+    public PlayerStats Stats => _stats;
     public int PlayerID => _playerID;
 
     public bool BlockInputs;

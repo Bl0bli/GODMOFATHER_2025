@@ -80,7 +80,7 @@ SpriteRenderer:
   m_SortingLayerID: 1836748461
   m_SortingLayer: 1
   m_SortingOrder: 10
-  m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
+  m_Sprite: {fileID: -3079722678121271134, guid: 360a438c189072d45baaf56ac032057a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -109,6 +109,7 @@ MonoBehaviour:
   _MAXScore: 10
   _MAXSpeed: 1.2
   rb: {fileID: 6719151814563405532}
+  _renderer: {fileID: 0}
   UnityOnDestroy:
     m_PersistentCalls:
       m_Calls:
@@ -201,7 +202,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
+    oldSize: {x: 0.93, y: 0.93}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0

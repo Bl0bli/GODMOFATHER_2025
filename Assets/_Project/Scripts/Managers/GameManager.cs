@@ -8,6 +8,8 @@ public class GameManager : MonoBehaviour
 {
     [SerializeField] private float _gameTime = 120f;
     [SerializeField] private Sprite[] _playerSprites;
+    [SerializeField] private Sprite[] _playerSpritesOuch;
+    [SerializeField] private Sprite[] _playerDead;
     
     public event Action<float> OnUpdateTime;
     public event Action OnEndGame;
@@ -34,6 +36,8 @@ public class GameManager : MonoBehaviour
         {
             _players.Add(player);
             player.Renderer.sprite = _playerSprites[_playerAmount];
+            player.Stats.SpriteOuch = _playerSpritesOuch[_playerAmount];
+            player.Stats.SpriteDead = _playerDead[_playerAmount];
         }
         if (_playerAmount >= 2) BeginGame();
         return _playerAmount;
