@@ -29,7 +29,7 @@ public class PlayerStats : MonoBehaviour
        _life += deltaLife;
        if (_life <= 0f)
        {
-           
+           GameManager.Instance.EndGame();
        }
        else if (deltaLife < 0)
        {
