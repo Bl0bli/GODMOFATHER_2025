@@ -27,8 +27,10 @@ public class Player : MonoBehaviour
     public UnityEvent UnityOnHit; 
     public UnityEvent UnityOnShoot;
     public UnityEvent UnityOnCharge;
+    public UnityEvent UnityOnHitPowerUp;
     
     [Header("References")]
+    [SerializeField] private Carousel _carousel;
     [SerializeField] private Rigidbody2D rb;
     [SerializeField] private BoxCollider2D boxCollider;
     [SerializeField] private Transform _weaponAnchor;
@@ -130,6 +132,7 @@ public class Player : MonoBehaviour
                     StopCoroutine(chargeShot);
                     chargeShot = null;
                     UnityOnShoot?.Invoke();
+                    if (_aimDir.sqrMagnitude < 0.01f) _aimDir = Vector2.right;
                     _weapon.Fire(_timePressed, _aimDir);
                     _timePressed = 0f;
                 }
@@ -143,7 +146,7 @@ public class Player : MonoBehaviour
         while (_timePressed < _MAXTimePressed)
         {
             _timePressed += Time.deltaTime;
-            _slider.value = Mathf.Lerp(0, 1f, (_timePressed / _MAXTimePressed));
+            _slider.value = Mathf.InverseLerp(0, _MAXTimePressed, _timePressed);
             UnityOnCharge?.Invoke();
             yield return null;
         }
@@ -177,6 +180,7 @@ public class Player : MonoBehaviour
         }*/
         if (bullet != null)
         {
+            UnityOnHit?.Invoke();
             _stats.UpdateLife(-bullet.Score);
             bullet.EndLifeTime();
             if (_invulnerabilityCooldown != null)
@@ -215,8 +219,14 @@ public class Player : MonoBehaviour
     #endregion
     
     #region PowerUps
-    
+
     public void AddPowerUp(PowerUp effect)
+    {
+        UnityOnHitPowerUp?.Invoke();
+        _carousel.StartSpin(effect, this);
+    }
+
+    public void ActivatePowerUp(PowerUp effect)
     {
         if (effect.Duration <= 0f)
         {
