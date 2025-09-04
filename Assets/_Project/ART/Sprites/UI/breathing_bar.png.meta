@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      breathing_bar_0: 3168203352365516340
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

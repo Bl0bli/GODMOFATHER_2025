@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      winscreen_gangsta_0: 1025804119406657408
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
