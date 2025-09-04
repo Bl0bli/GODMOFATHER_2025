@@ -15,8 +15,10 @@ public class GameManager : MonoBehaviour
     public UnityEvent UnityOnShowUIEndGame;
     
     public static GameManager Instance;
+    
     private int _playerAmount = -1;
     List<Player> _players = new List<Player>();
+    private Coroutine _timerRoutine;
     private void Awake()
     {
         if(Instance == null) Instance = this;
@@ -34,10 +36,11 @@ public class GameManager : MonoBehaviour
         if (_playerAmount >= 2) BeginGame();
         return _playerAmount;
     }
+    
 
     void BeginGame()
     {
-        StartCoroutine(TimerRoutine(_gameTime));
+        _timerRoutine = StartCoroutine(TimerRoutine(_gameTime));
     }
 
     IEnumerator TimerRoutine(float time)
@@ -53,8 +56,13 @@ public class GameManager : MonoBehaviour
         EndGame();
     }
 
-    void EndGame()
+    public void EndGame()
     {
+        if (_timerRoutine != null)
+        {
+            StopCoroutine(_timerRoutine);
+            _timerRoutine = null;
+        }
         UnityOnShowUIEndGame?.Invoke();
         OnEndGame?.Invoke();
         foreach (Player player in _players)
