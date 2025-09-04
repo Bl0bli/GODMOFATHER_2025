@@ -44,11 +44,17 @@ TagManager:
   - name: Background
     uniqueID: 1836748461
     locked: 0
+  - name: Foreground
+    uniqueID: 1063584763
+    locked: 0
   - name: Character
     uniqueID: 974344083
     locked: 0
   - name: Gameplay
     uniqueID: 2469904457
+    locked: 0
+  - name: VFX
+    uniqueID: 3698715277
     locked: 0
   m_RenderingLayers:
   - Default
