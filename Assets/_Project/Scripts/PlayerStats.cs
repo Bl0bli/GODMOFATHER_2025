@@ -12,6 +12,7 @@ public class PlayerStats : MonoBehaviour
     [SerializeField] private float _autoHealSpeedinSeconds = 3f;
     [SerializeField] private SpriteRenderer _renderer;
     [SerializeField] private Sprite _spriteOuch;
+    [SerializeField] private Sprite _spriteDead;
 
     private Coroutine _autoHealRoutine;
     private Coroutine _shakeRoutine;
@@ -21,6 +22,7 @@ public class PlayerStats : MonoBehaviour
     //public int Score { get { return _score; } }
     public int Life { get { return _life; } }
     public Sprite SpriteOuch { get { return _spriteOuch; }  set { _spriteOuch = value; } }
+    public Sprite SpriteDead { get { return _spriteDead; }  set { _spriteDead = value; } }
     
    //public void AddScore(int score) =>_score += score;
 
@@ -45,6 +47,7 @@ public class PlayerStats : MonoBehaviour
        }
        if (_life <= 0f)
        {
+           _renderer.sprite = _spriteDead;
            GameManager.Instance.EndGame();
        }
        else if (deltaLife < 0)
