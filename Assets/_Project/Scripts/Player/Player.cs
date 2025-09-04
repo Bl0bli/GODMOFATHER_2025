@@ -6,10 +6,12 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
 using UnityEngine.Networking;
+using UnityEngine.UI;
 
 public class Player : MonoBehaviour
 {
     [Header("Paramètres atomiques")]
+    [SerializeField] private float _offsetRot;
     [SerializeField] private float _MAXTimePressed = 3f;
 
     [SerializeField] private float _MAXSpeed = 5f;
@@ -19,6 +21,7 @@ public class Player : MonoBehaviour
     [SerializeField, Range(0.1f, 5f)] private float _weaponRadius = 1;
     [SerializeField] bool _pushBack = false;
     [SerializeField, ShowIf("_pushBack")] private float _pushBackForce = 1f;
+    [SerializeField] private float _invulnerabilityDuration = 1f;
     
     [Header("Event pour les fx")]
     public UnityEvent UnityOnHit; 
@@ -27,9 +30,12 @@ public class Player : MonoBehaviour
     
     [Header("References")]
     [SerializeField] private Rigidbody2D rb;
+    [SerializeField] private BoxCollider2D boxCollider;
+    [SerializeField] private Transform _weaponAnchor;
     [SerializeField] private Weapon _weapon;
     [SerializeField] private PlayerStats _stats;
     [SerializeField] private SpriteRenderer _renderer;
+    [SerializeField] private Slider _slider;
     
     private List<PowerUp> activeEffects = new List<PowerUp>();
     private float _timePressed = 0f;
@@ -37,6 +43,7 @@ public class Player : MonoBehaviour
     private Vector2 _moveInput;
     private Vector2 _currentVelocity;
     private Coroutine chargeShot;
+    private Coroutine _invulnerabilityCooldown;
     private int _playerID = 0;
 
     public float MoveSpeed
@@ -58,6 +65,17 @@ public class Player : MonoBehaviour
     private void Start()
     {
         _playerID = GameManager.Instance.GetPlayerID(this);
+    }
+
+    private void OnValidate()
+    {
+        if (_weapon == null) return;
+        
+        if (_aimDir.sqrMagnitude > 0.01f)
+        {
+            float angle = Mathf.Atan2(_aimDir.y, _aimDir.x) * Mathf.Rad2Deg;
+            _weapon.transform.rotation = Quaternion.Euler(0, 0, angle + _offsetRot);
+        }
     }
 
     private void FixedUpdate()
@@ -88,14 +106,8 @@ public class Player : MonoBehaviour
             if (_aimDir.sqrMagnitude > 0.01f)
             {
                 float angle = Mathf.Atan2(_aimDir.y, _aimDir.x) * Mathf.Rad2Deg;
-            
-                Vector3 offset = new Vector3(_aimDir.x, _aimDir.y, 0).normalized * _weaponRadius;
-                _weapon.transform.position = transform.position + offset;
-            
-                _weapon.transform.rotation = Quaternion.Euler(0, 0, angle - 90f);
+                _weaponAnchor.transform.rotation = Quaternion.Euler(0, 0, angle + _offsetRot);
             }
-
-            //Debug.Log($"aim: {context.ReadValue<Vector2>()}");
         }
     }
 
@@ -105,6 +117,7 @@ public class Player : MonoBehaviour
         {
             if (context.performed)
             {
+                _slider.value = 0f;
                 if(chargeShot != null) StopCoroutine(chargeShot);
                 _timePressed = 0f;
                 chargeShot = StartCoroutine(ChargeShot());
@@ -113,6 +126,7 @@ public class Player : MonoBehaviour
             {
                 if (chargeShot != null)
                 {
+                    _slider.value = 0f;
                     StopCoroutine(chargeShot);
                     chargeShot = null;
                     UnityOnShoot?.Invoke();
@@ -129,6 +143,7 @@ public class Player : MonoBehaviour
         while (_timePressed < _MAXTimePressed)
         {
             _timePressed += Time.deltaTime;
+            _slider.value = Mathf.Lerp(0, 1f, (_timePressed / _MAXTimePressed));
             UnityOnCharge?.Invoke();
             yield return null;
         }
@@ -139,7 +154,7 @@ public class Player : MonoBehaviour
     #region Collisions
     public void Hit(Bullet bullet = null)
     {
-        if(bullet != null && bullet.Shooter != null)
+        /*if(bullet != null && bullet.Shooter != null)
         {
             UnityOnHit?.Invoke();
             
@@ -159,14 +174,25 @@ public class Player : MonoBehaviour
                 bullet.Shooter.HandleScoreHit(- bullet.Score);
                 bullet.EndLifeTime();
             }
+        }*/
+        if (bullet != null)
+        {
+            _stats.UpdateLife(-bullet.Score);
+            bullet.EndLifeTime();
+            if (_invulnerabilityCooldown != null)
+            {
+                StopCoroutine(_invulnerabilityCooldown);
+                _invulnerabilityCooldown = null;
+                _invulnerabilityCooldown = StartCoroutine(InvulnerabilityCooldown());
+            }
         }
     }
 
-    public void HandleScoreHit(int score)
+    /*public void HandleScoreHit(int score)
     {
         _stats.AddScore(score);
         Debug.Log($"Player {_playerID} score: {_stats.Score}");
-    }
+    }*/
 
     private void OnCollisionEnter2D(Collision2D other)
     {
@@ -212,6 +238,13 @@ public class Player : MonoBehaviour
 
         effect.Remove(this);
         activeEffects.Remove(effect);
+    }
+
+    IEnumerator InvulnerabilityCooldown()
+    {
+        boxCollider.enabled = false;
+        yield return new WaitForSeconds(_invulnerabilityDuration);
+        boxCollider.enabled = true;
     }
     
     #endregion
