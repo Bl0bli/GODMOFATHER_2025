@@ -27,6 +27,7 @@ public class Player : MonoBehaviour
     public UnityEvent UnityOnHit; 
     public UnityEvent UnityOnShoot;
     public UnityEvent UnityOnCharge;
+    public UnityEvent UnityOnHitPowerUp;
     
     [Header("References")]
     [SerializeField] private Carousel _carousel;
@@ -179,6 +180,7 @@ public class Player : MonoBehaviour
         }*/
         if (bullet != null)
         {
+            UnityOnHit?.Invoke();
             _stats.UpdateLife(-bullet.Score);
             bullet.EndLifeTime();
             if (_invulnerabilityCooldown != null)
@@ -217,8 +219,12 @@ public class Player : MonoBehaviour
     #endregion
     
     #region PowerUps
-    
-    public void AddPowerUp(PowerUp effect) => _carousel.StartSpin(effect, this);
+
+    public void AddPowerUp(PowerUp effect)
+    {
+        UnityOnHitPowerUp?.Invoke();
+        _carousel.StartSpin(effect, this);
+    }
 
     public void ActivatePowerUp(PowerUp effect)
     {

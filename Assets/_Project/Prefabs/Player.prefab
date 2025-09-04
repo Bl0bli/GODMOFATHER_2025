@@ -475,7 +475,7 @@ MonoBehaviour:
   _viewport: {fileID: 4564701942907811262}
   _content: {fileID: 5507170090565642616}
   _globalLayout: {fileID: 4915707173837513943}
-  _spinDuration: 3
+  _spinDuration: 1.5
   _layoutGroup: {fileID: 3163045270922358993}
   scrollSpeed: 100
   _isLocked: 0

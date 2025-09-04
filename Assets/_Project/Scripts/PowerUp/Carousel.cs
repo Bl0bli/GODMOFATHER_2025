@@ -3,11 +3,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UI;
 using Random = UnityEngine.Random;
 
 public class Carousel : MonoBehaviour
 {
+    public UnityEvent UnityOnPowerUpSelected;
+    
     [SerializeField] private float _pauseTime = 0.5f;
     [SerializeField] private GameObject _imgPrefab;
     [SerializeField] private PowerUp[] _powerUps;
@@ -145,6 +148,7 @@ public class Carousel : MonoBehaviour
         yield return null;
     }
     
+    UnityOnPowerUpSelected?.Invoke();
     player.ActivatePowerUp(target);
     // 🔹 Attendre 1 seconde avant de disparaitre
     yield return new WaitForSeconds(_pauseTime);
