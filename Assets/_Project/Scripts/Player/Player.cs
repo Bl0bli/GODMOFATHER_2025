@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using NaughtyAttributes;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
@@ -10,8 +11,14 @@ public class Player : MonoBehaviour
 {
     [Header("Paramètres atomiques")]
     [SerializeField] private float _MAXTimePressed = 3f;
-    [SerializeField, Range(0.1f, 1f)] private float _moveSpeed = 5f;
+
+    [SerializeField] private float _MAXSpeed = 5f;
+    [SerializeField] private float _acceleration = 10f;
+    [SerializeField] private float _deceleration = 15f;
+    [SerializeField, Range(0.1f, 1f)] private float _moveSpeedMultiplier = 1f;
     [SerializeField, Range(0.1f, 5f)] private float _weaponRadius = 1;
+    [SerializeField] bool _pushBack = false;
+    [SerializeField, ShowIf("_pushBack")] private float _pushBackForce = 1f;
     
     [Header("Event pour les fx")]
     public UnityEvent UnityOnHit; 
@@ -27,13 +34,15 @@ public class Player : MonoBehaviour
     private List<PowerUp> activeEffects = new List<PowerUp>();
     private float _timePressed = 0f;
     private Vector2 _aimDir;
+    private Vector2 _moveInput;
+    private Vector2 _currentVelocity;
     private Coroutine chargeShot;
     private int _playerID = 0;
 
     public float MoveSpeed
     {
-        get{return _moveSpeed;}
-        set{_moveSpeed = value;}
+        get{return _moveSpeedMultiplier;}
+        set{_moveSpeedMultiplier = value;}
     }
     public SpriteRenderer Renderer
     {
@@ -51,15 +60,22 @@ public class Player : MonoBehaviour
         _playerID = GameManager.Instance.GetPlayerID(this);
     }
 
+    private void FixedUpdate()
+    {
+        Vector2 targetVelocity = _moveInput.normalized * _MAXSpeed;
+        
+        _currentVelocity = Vector2.Lerp(_currentVelocity, targetVelocity, (_moveInput.sqrMagnitude > 0.1f ? _acceleration : _deceleration) * Time.fixedDeltaTime);
+
+        rb.linearVelocity = _currentVelocity * _moveSpeedMultiplier;
+    }
+
     #region Inputs
     public void HandleMovement(InputAction.CallbackContext context)
     {
         if (!BlockInputs)
         {
             //Debug.Log($"move: {context.ReadValue<Vector2>()}");
-            Vector2 dir = context.ReadValue<Vector2>();
-            rb.MovePosition((Vector2)transform.position + (context.ReadValue<Vector2>() * _moveSpeed));
-
+            _moveInput = context.ReadValue<Vector2>();
         }
     }
 
@@ -124,8 +140,23 @@ public class Player : MonoBehaviour
         if(bullet != null && bullet.Shooter != null)
         {
             UnityOnHit?.Invoke();
-            if(bullet.Shooter.PlayerID != _playerID) bullet.Shooter.HandleScoreHit(bullet.Score);
-            else bullet.Shooter.HandleScoreHit(- bullet.Score);
+            
+            if (_pushBack && rb != null)
+            {
+                Vector2 dir = ((Vector2)transform.position - (Vector2)bullet.transform.position).normalized;
+                rb.AddForce(dir * _pushBackForce, ForceMode2D.Impulse);
+            }
+
+            if (bullet.Shooter.PlayerID != _playerID)
+            {
+                bullet.Shooter.HandleScoreHit(bullet.Score);
+                bullet.EndLifeTime();
+            }
+            else
+            {
+                bullet.Shooter.HandleScoreHit(- bullet.Score);
+                bullet.EndLifeTime();
+            }
         }
     }
 
