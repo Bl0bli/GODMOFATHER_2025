@@ -29,6 +29,7 @@ public class Player : MonoBehaviour
     public UnityEvent UnityOnCharge;
     
     [Header("References")]
+    [SerializeField] private Carousel _carousel;
     [SerializeField] private Rigidbody2D rb;
     [SerializeField] private BoxCollider2D boxCollider;
     [SerializeField] private Transform _weaponAnchor;
@@ -217,7 +218,9 @@ public class Player : MonoBehaviour
     
     #region PowerUps
     
-    public void AddPowerUp(PowerUp effect)
+    public void AddPowerUp(PowerUp effect) => _carousel.StartSpin(effect, this);
+
+    public void ActivatePowerUp(PowerUp effect)
     {
         if (effect.Duration <= 0f)
         {

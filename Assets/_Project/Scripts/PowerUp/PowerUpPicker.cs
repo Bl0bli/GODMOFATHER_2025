@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+using System.Linq;
 using UnityEditor;
 using UnityEngine;
 
@@ -6,6 +8,7 @@ public class PowerUpPicker : MonoBehaviour, IInteractable
     [SerializeField] private PowerUp[] possibleEffects;
     private PowerUp chosenEffect;
     private SpriteRenderer sr;
+    List<PowerUp> _powerUps;
     
 #if UNITY_EDITOR
     private void OnValidate()
@@ -22,15 +25,17 @@ public class PowerUpPicker : MonoBehaviour, IInteractable
     private void Awake()
     {
         sr = GetComponent<SpriteRenderer>();
+        _powerUps = possibleEffects.ToList();
     }
 
     public void Trigger(Player player = null)
     {
         if (player != null)
         {
-            if (possibleEffects != null && possibleEffects.Length > 0)
+            if (_powerUps != null && _powerUps.Count > 0)
             {
-                chosenEffect = possibleEffects[Random.Range(0, possibleEffects.Length)];
+                chosenEffect = _powerUps[Random.Range(0, _powerUps.Count)];
+                _powerUps.Remove(chosenEffect);
                 //sr.sprite = chosenEffect.Icon;
             }
             player.AddPowerUp(chosenEffect);

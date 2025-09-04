@@ -467,17 +467,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 599ed4715852b7145aefdb94478486e2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _pauseTime: 0.5
+  _imgPrefab: {fileID: 2666301660565878462, guid: 430afb45a0669034a990a50150c012fe, type: 3}
   _powerUps:
   - {fileID: 11400000, guid: 16dcc22da84cde6459494cf20859dc97, type: 2}
   - {fileID: 11400000, guid: 1dbe304d0ab92194d80433667eddcbf4, type: 2}
   _viewport: {fileID: 4564701942907811262}
   _content: {fileID: 5507170090565642616}
+  _globalLayout: {fileID: 4915707173837513943}
+  _spinDuration: 3
   _layoutGroup: {fileID: 3163045270922358993}
   scrollSpeed: 100
   _isLocked: 0
+  _offset: 0
   baseScrollSpeed: 500
-  minSpins: 3
-  maxSpins: 6
   _itemList: []
 --- !u!1 &4274572099923082041
 GameObject:
@@ -829,7 +832,7 @@ MonoBehaviour:
     m_Top: 0
     m_Bottom: 0
   m_ChildAlignment: 4
-  m_Spacing: 0
+  m_Spacing: 50
   m_ChildForceExpandWidth: 1
   m_ChildForceExpandHeight: 1
   m_ChildControlWidth: 0
@@ -962,6 +965,7 @@ MonoBehaviour:
   UnityOnCharge:
     m_PersistentCalls:
       m_Calls: []
+  _carousel: {fileID: 1747605653701356438}
   rb: {fileID: 7242205879262756897}
   boxCollider: {fileID: 2697735322774024693}
   _weaponAnchor: {fileID: 5953532554077382409}
