@@ -5,7 +5,8 @@
 
     public class Bullet : MonoBehaviour, IInteractable
     {
-        [SerializeField] private ParticleSystem particleDestroy, _trail, _fireWorkExplode;
+        [SerializeField] private ParticleSystem particleDestroy, _fireWorkExplode;
+        [SerializeField] private GameObject _trail;
         [SerializeField, Range(1,10)] private float _MAXlifeTime = 5f;
         [SerializeField, Range(1, 10)] private float _MINlifeTime = 1f;
         [SerializeField] private float _MINSize = 0.25f;
@@ -52,6 +53,7 @@
         public void SetFireWorks(bool enabled)
         {
             _isFireWorks = enabled;
+            _trail.SetActive(enabled);
         }
 
         public void StartLifeTime(float timePressed, Vector2 direction)
@@ -61,6 +63,7 @@
             _speed = Mathf.Lerp(_speed, _MAXSpeed, timePressed);
             _size = Mathf.Lerp(_MINSize, _MAXSize, timePressed);
             _score = _MAXScore;
+            if (_isFireWorks) _score *= 2;
             _defaultSize = _size;
             transform.localScale = new Vector3(_size, _size, _size);
             rb.AddForce(direction.normalized * _speed * 50, ForceMode2D.Impulse);
