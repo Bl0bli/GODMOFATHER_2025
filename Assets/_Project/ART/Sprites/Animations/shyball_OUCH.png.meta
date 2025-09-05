@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      shyball_OUCH_0: 3124827594888931347
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

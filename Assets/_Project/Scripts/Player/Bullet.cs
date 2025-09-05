@@ -8,6 +8,7 @@
         [SerializeField] ParticleSystem particleDestroy;
         [SerializeField, Range(1,10)] private float _MAXlifeTime = 5f;
         [SerializeField, Range(1, 10)] private float _MINlifeTime = 1f;
+        [SerializeField] private float _MINSize = 0.25f;
         [SerializeField, Range(1, 5)] private float _MAXSize = 5f;
         [SerializeField, Range(1, 100)] private int _MAXScore = 2;
         [SerializeField, Range(1f, 10f)] private float _MAXSpeed = 4f;
@@ -49,7 +50,7 @@
             _lifeTime = Mathf.Lerp(_MINlifeTime, _MAXlifeTime, timePressed);
             _initialLifeTime = _lifeTime;
             _speed = Mathf.Lerp(_speed, _MAXSpeed, timePressed);
-            _size = Mathf.Lerp(_size, _MAXSize, timePressed);
+            _size = Mathf.Lerp(_MINSize, _MAXSize, timePressed);
             _score = _MAXScore;
             _defaultSize = _size;
             transform.localScale = new Vector3(_size, _size, _size);
@@ -73,7 +74,7 @@
 
         IEnumerator DestroyRoutine()
         {
-            yield return new WaitForSeconds(particleDestroy.main.duration * .5f);
+            yield return new WaitForSeconds(particleDestroy.main.duration);
             Destroy(gameObject);
         }
 
@@ -82,7 +83,13 @@
             Debug.Log("HIT");
             if(player != null) player.Hit(this);
         }
-        
+
+        private void OnCollisionEnter2D(Collision2D other)
+        {
+            if (_isBouncy) return;
+            EndLifeTime();
+        }
+
         public void EndLifeTime()
         {
             rb.freezeRotation = true;

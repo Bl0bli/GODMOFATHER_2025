@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      meanballoon_OUCH_0: 8780594558601733863
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
