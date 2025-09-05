@@ -12,9 +12,9 @@ GameObject:
   - component: {fileID: 4623874729792674926}
   - component: {fileID: 7374088143359877697}
   - component: {fileID: 6719151814563405532}
-  - component: {fileID: 2038344327707196991}
   - component: {fileID: 3019838715659155967}
   - component: {fileID: 5895517602265383867}
+  - component: {fileID: 2853760679274443807}
   m_Layer: 0
   m_Name: Bullet
   m_TagString: Untagged
@@ -31,7 +31,7 @@ Transform:
   m_GameObject: {fileID: 798576106692529145}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.41534692, y: 1.7304869, z: 0}
+  m_LocalPosition: {x: -0.66, y: -0.26, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -105,6 +105,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   particleDestroy: {fileID: 1472167570096147155, guid: d1a7c423d7b3ffa40bf1f4c728733342, type: 3}
+  _trail: {fileID: 3655605118159745572, guid: bf57b9709b7430b4ca7bad170fd43d13, type: 3}
+  _fireWorkExplode: {fileID: 8183348999777747953, guid: 339766a036569b446ba46a045bfd07a9, type: 3}
   _MAXlifeTime: 2
   _MINlifeTime: 1
   _MINSize: 0.25
@@ -115,6 +117,7 @@ MonoBehaviour:
   _renderer: {fileID: 4623874729792674926}
   _bouncyMaterial: {fileID: 6200000, guid: a1602d54b043641428126f5b6080ea5b, type: 2}
   _defaultMaterial: {fileID: 6200000, guid: 2b558168c62722449ae4cef66360195e, type: 2}
+  _collider: {fileID: 2853760679274443807}
   UnityOnDestroy:
     m_PersistentCalls:
       m_Calls:
@@ -142,6 +145,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  IsFireWork: 0
 --- !u!50 &6719151814563405532
 Rigidbody2D:
   serializedVersion: 5
@@ -169,52 +173,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!61 &2038344327707196991
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 798576106692529145}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_ForceSendLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ForceReceiveLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ContactCaptureLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_CallbackLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_CompositeOperation: 0
-  m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.93, y: 0.93}
-    newSize: {x: 1, y: 1}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  m_Size: {x: 1, y: 1}
-  m_EdgeRadius: 0
 --- !u!82 &3019838715659155967
 AudioSource:
   m_ObjectHideFlags: 0
@@ -324,3 +282,39 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2573f003d4c235d4cb9fd9dd2c4f1bff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!58 &2853760679274443807
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 798576106692529145}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: 0, y: 0}
+  m_Radius: 0.465

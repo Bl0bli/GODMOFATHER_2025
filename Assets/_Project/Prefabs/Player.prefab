@@ -986,7 +986,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 85cad07b9604944968afa477191f4072, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _MAXLife: 30
+  _MAXLife: 15
   _autoHealCooldown: 4
   _autoHealSpeedinSeconds: 4
   _renderer: {fileID: 6466431905634966454}

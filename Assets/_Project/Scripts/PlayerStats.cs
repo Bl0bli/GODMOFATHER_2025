@@ -43,7 +43,7 @@ public class PlayerStats : MonoBehaviour
    {
        _life += deltaLife;
        float delta = Mathf.InverseLerp(_MAXLife, 0, _life);
-       float deltaScale = Mathf.Lerp(.5f, .8f, delta);
+       float deltaScale = Mathf.Lerp(.5f, 1f, delta);
        transform.localScale = new Vector3(deltaScale, deltaScale, deltaScale);
        if (_life <= 0f)
        {

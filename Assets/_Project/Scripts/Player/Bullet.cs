@@ -5,7 +5,7 @@
 
     public class Bullet : MonoBehaviour, IInteractable
     {
-        [SerializeField] ParticleSystem particleDestroy;
+        [SerializeField] private ParticleSystem particleDestroy, _trail, _fireWorkExplode;
         [SerializeField, Range(1,10)] private float _MAXlifeTime = 5f;
         [SerializeField, Range(1, 10)] private float _MINlifeTime = 1f;
         [SerializeField] private float _MINSize = 0.25f;
@@ -15,6 +15,7 @@
         [SerializeField] Rigidbody2D rb;
         [SerializeField] private SpriteRenderer _renderer;
         [SerializeField] PhysicsMaterial2D _bouncyMaterial, _defaultMaterial;
+        [SerializeField] CircleCollider2D _collider;
 
         public UnityEvent UnityOnDestroy;
         
@@ -24,7 +25,7 @@
         float _speed = 0f;
 	    Player _shooter;
         private Coroutine _lifeTimeRoutine;
-        private bool _isBouncy = false;
+        private bool _isBouncy = false, _isFireWorks;
         private float _defaultSize = 0f;
         private float _initialLifeTime;
         
@@ -32,17 +33,25 @@
         public Player Shooter => _shooter;
         public SpriteRenderer Renderer => _renderer;
 
+        public bool IsFireWork = false;
+
         public void InitShooter(Player shooter)
         {
             _defaultSize = _size;
             _shooter = shooter;
             SetBouncy(shooter.HasBouncyBullets);
+            SetFireWorks(shooter.HasFireWork);
         }
         
         public void SetBouncy(bool enabled)
         {
             _isBouncy = enabled;
             rb.sharedMaterial = enabled ? _bouncyMaterial : _defaultMaterial;
+        }
+
+        public void SetFireWorks(bool enabled)
+        {
+            _isFireWorks = enabled;
         }
 
         public void StartLifeTime(float timePressed, Vector2 direction)
@@ -74,6 +83,11 @@
 
         IEnumerator DestroyRoutine()
         {
+            if (_isFireWorks)
+            {
+                Instantiate(_fireWorkExplode, transform.position, Quaternion.identity);
+            }
+            _collider.enabled = false;
             ParticleSystem p = Instantiate(particleDestroy, transform.position, Quaternion.identity);
             yield return new WaitForSeconds(particleDestroy.main.duration);
             Destroy(gameObject);
