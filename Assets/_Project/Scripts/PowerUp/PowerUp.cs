@@ -10,6 +10,7 @@ public abstract class PowerUp : ScriptableObject
     public float Duration => duration;
     public Sprite Icon => _icon;
     public string Name => _name;
+    public bool DoesHaveADuration => _doesHaveADuration;
 
     public abstract void Apply(Player player);
     public abstract void Remove(Player player);
