@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ce8a5f880a88a6b47bc41e1d157b5d4f, type: 3}
+  m_Name: FireWorks
+  m_EditorClassIdentifier: 
+  _name: FireWorks
+  _doesHaveADuration: 0
+  duration: -1
+  _icon: {fileID: -352052695375733653, guid: 6bf49380bb7e63849ad56291b767e6bf, type: 3}

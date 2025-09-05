@@ -1,7 +1,6 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.Rendering;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
@@ -14,6 +13,9 @@ public class GameManager : MonoBehaviour
     [SerializeField] private Sprite[] _playerSprites;
     [SerializeField] private Sprite[] _playerSpritesOuch;
     [SerializeField] private Sprite[] _playerDead;
+    [SerializeField] private List<Sprite> _playerMovingSprites1 = new List<Sprite>();
+    [SerializeField] private List<Sprite> _playerMovingSprites2 = new List<Sprite>();
+    private List<Sprite>[] _playerMovingSprites = new List<Sprite>[2];
     
     [SerializeField] List<PlayerInput> _playerInputs = new List<PlayerInput>();
     
@@ -36,7 +38,11 @@ public class GameManager : MonoBehaviour
         if(Instance == null) Instance = this;
         else Destroy(this);
         
-        DontDestroyOnLoad(gameObject);  
+        DontDestroyOnLoad(gameObject);
+
+        _playerMovingSprites[0] = _playerMovingSprites1;
+        _playerMovingSprites[1] = _playerMovingSprites2;
+        
     }
 
     public int GetPlayerID(Player player)
@@ -49,6 +55,9 @@ public class GameManager : MonoBehaviour
             player.Stats.DefaultSprite = _playerSprites[_playerAmount];
             player.Stats.SpriteOuch = _playerSpritesOuch[_playerAmount];
             player.Stats.SpriteDead = _playerDead[_playerAmount];
+            player.PlayerAnimator.PlayerMovingSprites = _playerMovingSprites[_playerAmount];
+            player.PlayerAnimator.DefaultSprite = _playerSprites[_playerAmount];
+            player.PlayerAnimator.SpriteOuch = _playerSpritesOuch[_playerAmount];
         }   
         return _playerAmount;
     }
