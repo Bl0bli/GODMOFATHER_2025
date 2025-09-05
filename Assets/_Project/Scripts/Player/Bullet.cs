@@ -11,7 +11,7 @@
         [SerializeField] private float _MINSize = 0.25f;
         [SerializeField, Range(1, 5)] private float _MAXSize = 5f;
         [SerializeField, Range(1, 100)] private int _MAXScore = 2;
-        [SerializeField, Range(1f, 10f)] private float _MAXSpeed = 4f;
+        [SerializeField, Range(0.1f, 10f)] private float _MAXSpeed = 4f;
         [SerializeField] Rigidbody2D rb;
         [SerializeField] private SpriteRenderer _renderer;
         [SerializeField] PhysicsMaterial2D _bouncyMaterial, _defaultMaterial;
@@ -74,6 +74,7 @@
 
         IEnumerator DestroyRoutine()
         {
+            ParticleSystem p = Instantiate(particleDestroy, transform.position, Quaternion.identity);
             yield return new WaitForSeconds(particleDestroy.main.duration);
             Destroy(gameObject);
         }
@@ -86,7 +87,7 @@
 
         private void OnCollisionEnter2D(Collision2D other)
         {
-            if (_isBouncy) return;
+            if (_isBouncy || other.gameObject.GetComponent<IInteractable>() != null) return;
             EndLifeTime();
         }
 
