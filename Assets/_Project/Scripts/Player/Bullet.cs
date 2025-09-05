@@ -85,8 +85,11 @@
         {
             rb.freezeRotation = true;
             _renderer.enabled = false;
-            StopCoroutine(_lifeTimeRoutine);
-            _lifeTimeRoutine = null;
+            if (_lifeTimeRoutine != null)
+            {
+                StopCoroutine(_lifeTimeRoutine);
+                _lifeTimeRoutine = null;
+            }
             StartCoroutine(DestroyRoutine());
             UnityOnDestroy?.Invoke();
         }
