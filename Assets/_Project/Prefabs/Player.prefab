@@ -502,7 +502,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 8405745147617941845, guid: 306e2ca2f2e31dd46999ea3c7feca237, type: 3}
+  m_Sprite: {fileID: -4528339229066636351, guid: d94c5e8e82d1ea946809c216f6f86655, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -561,6 +561,7 @@ MonoBehaviour:
   _imgPrefab: {fileID: 2666301660565878462, guid: 430afb45a0669034a990a50150c012fe, type: 3}
   _powerUps:
   - {fileID: 11400000, guid: 3aed8b62a36d7b143855c7a028ce5205, type: 2}
+  - {fileID: 11400000, guid: 41da895387ad68d4aaa479b42790f788, type: 2}
   - {fileID: 11400000, guid: 16dcc22da84cde6459494cf20859dc97, type: 2}
   - {fileID: 11400000, guid: 1dbe304d0ab92194d80433667eddcbf4, type: 2}
   _viewport: {fileID: 4564701942907811262}
@@ -1100,6 +1101,7 @@ MonoBehaviour:
   _animator: {fileID: -339982765529434400}
   _playerAnimator: {fileID: 3848070856455636445}
   HasBouncyBullets: 0
+  HasFireWork: 0
   BlockInputs: 0
 --- !u!114 &9174320693726242020
 MonoBehaviour:

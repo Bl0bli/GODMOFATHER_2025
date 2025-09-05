@@ -99,7 +99,7 @@ public class PowerUpPicker : MonoBehaviour, IInteractable
 
     IEnumerator CoolDown()
     {
-        float timer = Random.Range(15, 30);
+        float timer = Random.Range(8, 15);
         Debug.Log($"COOLDOWN {timer}");
         yield return new WaitForSeconds(timer);
         _coolDownBeforeReAppear = null; 
