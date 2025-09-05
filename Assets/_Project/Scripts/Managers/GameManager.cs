@@ -18,7 +18,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] List<PlayerInput> _playerInputs = new List<PlayerInput>();
     
     public event Action<float> OnUpdateTime;
-    public event Action OnEndGame;
+    public event Action<int> OnEndGame;
 
     public UnityEvent UnityOnPlayerJoined;
     public UnityEvent UnityOnShowUIEndGame;
@@ -90,15 +90,32 @@ public class GameManager : MonoBehaviour
         EndGame();
     }
 
+    Player GetWinner()
+    {
+        Player winner = null;
+        int life = 0;
+        foreach (Player player in _players)
+        {
+            if (player.Stats.Life > life)
+            {
+                winner = player;
+                life = player.Stats.Life;
+            }
+        }
+        
+        return winner;
+    }
+
     public void EndGame()
     {
+        Player winner = GetWinner();
         if (_timerRoutine != null)
         {
             StopCoroutine(_timerRoutine);
             _timerRoutine = null;
         }
         UnityOnShowUIEndGame?.Invoke();
-        OnEndGame?.Invoke();
+        OnEndGame?.Invoke(winner.PlayerID);
         foreach (Player player in _players)
         {
             player.BlockInputs = true;
@@ -137,5 +154,15 @@ public class GameManager : MonoBehaviour
         yield return new WaitForSeconds(1.5f);
         _startGameRoutine = null;
         SwitchScene();
+    }
+
+    public void Clear()
+    {
+        foreach (Player player in _players)
+        {
+            Destroy(player.gameObject);
+        }
+        
+        Destroy(this.gameObject);
     }
 }

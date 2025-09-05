@@ -107,7 +107,7 @@ MonoBehaviour:
   _MAXlifeTime: 2
   _MINlifeTime: 1
   _MAXSize: 1
-  _MAXScore: 10
+  _MAXScore: 2
   _MAXSpeed: 1.2
   rb: {fileID: 6719151814563405532}
   _renderer: {fileID: 4623874729792674926}

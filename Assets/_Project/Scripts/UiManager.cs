@@ -26,7 +26,7 @@ public class UiManager : MonoBehaviour
             return;
         }
         GameManager.Instance.OnUpdateTime += UpdateTimer;
-        GameManager.Instance.OnEndGame += EndGame;
+        //GameManager.Instance.OnEndGame += EndGame;
         
     }
 

@@ -9,7 +9,7 @@
         [SerializeField, Range(1,10)] private float _MAXlifeTime = 5f;
         [SerializeField, Range(1, 10)] private float _MINlifeTime = 1f;
         [SerializeField, Range(1, 5)] private float _MAXSize = 5f;
-        [SerializeField, Range(1, 100)] private int _MAXScore = 1;
+        [SerializeField, Range(1, 100)] private int _MAXScore = 2;
         [SerializeField, Range(1f, 10f)] private float _MAXSpeed = 4f;
         [SerializeField] Rigidbody2D rb;
         [SerializeField] private SpriteRenderer _renderer;
@@ -50,6 +50,7 @@
             _initialLifeTime = _lifeTime;
             _speed = Mathf.Lerp(_speed, _MAXSpeed, timePressed);
             _size = Mathf.Lerp(_size, _MAXSize, timePressed);
+            _score = _MAXScore;
             _defaultSize = _size;
             transform.localScale = new Vector3(_size, _size, _size);
             rb.AddForce(direction.normalized * _speed * 50, ForceMode2D.Impulse);
@@ -78,6 +79,7 @@
 
         public void Trigger(Player player = null)
         {
+            Debug.Log("HIT");
             if(player != null) player.Hit(this);
         }
         
