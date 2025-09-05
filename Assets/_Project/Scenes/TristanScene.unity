@@ -1409,7 +1409,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _winnerScreen:
-  - {fileID: 5878334903976641363, guid: 1c1cf515d6c59e54a9ca76025bb0f785, type: 3}
+  - {fileID: 204505623057286732, guid: 06a2fef8c3003464c8d14448ee1ad97c, type: 3}
   - {fileID: 1025804119406657408, guid: 638033f79f68dd3498e97a05aa52362c, type: 3}
   _imageWinnerScreen: {fileID: 822230496}
   _textTimer: {fileID: 250193641}

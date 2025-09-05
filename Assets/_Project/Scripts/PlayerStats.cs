@@ -55,8 +55,6 @@ public class PlayerStats : MonoBehaviour
        if (_cantHeal) return;
        else if (_life < _MAXLife / 2)
        {
-           Debug.Log("Half");
-           _renderer.sprite = _spriteOuch;
            if (_shakeRoutine == null)
                _shakeRoutine = StartCoroutine(ShakeRoutine());
        }

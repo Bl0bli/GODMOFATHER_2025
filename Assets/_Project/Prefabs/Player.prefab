@@ -947,6 +947,7 @@ GameObject:
   - component: {fileID: 2697735322774024693}
   - component: {fileID: 3784673961596837325}
   - component: {fileID: -339982765529434400}
+  - component: {fileID: 3848070856455636445}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -1097,6 +1098,7 @@ MonoBehaviour:
   _renderer: {fileID: 6466431905634966454}
   _slider: {fileID: 5664922135156549933}
   _animator: {fileID: -339982765529434400}
+  _playerAnimator: {fileID: 3848070856455636445}
   HasBouncyBullets: 0
   BlockInputs: 0
 --- !u!114 &9174320693726242020
@@ -1369,6 +1371,19 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &3848070856455636445
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7045064456368112745}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7676264d80926d24ca530d4e1bad61db, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _renderer: {fileID: 6466431905634966454}
 --- !u!1 &8379236354469557105
 GameObject:
   m_ObjectHideFlags: 0

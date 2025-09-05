@@ -39,6 +39,7 @@ public class Player : MonoBehaviour
     [SerializeField] private SpriteRenderer _renderer;
     [SerializeField] private Slider _slider;
     [SerializeField] private Animator _animator;
+    [SerializeField] private PlayerAnimator _playerAnimator;
     
     private List<PowerUp> activeEffects = new List<PowerUp>();
     private float _timePressed = 0f;
@@ -58,6 +59,12 @@ public class Player : MonoBehaviour
     {
         get{return _renderer;}
         set{_renderer = value;}
+    }
+
+    public PlayerAnimator PlayerAnimator
+    {
+        get{return _playerAnimator;}
+        set{_playerAnimator = value;}
     }
 
     public bool HasBouncyBullets = false;
@@ -95,6 +102,7 @@ public class Player : MonoBehaviour
         else
         {
             _animator.SetBool("isMoving", false);
+            _playerAnimator.StopMovingAnimation();
         }
         Vector2 targetVelocity = _moveInput.normalized * _MAXSpeed;
         
@@ -110,6 +118,7 @@ public class Player : MonoBehaviour
         {
             //Debug.Log($"move: {context.ReadValue<Vector2>()}");
             _moveInput = context.ReadValue<Vector2>();
+            _playerAnimator.PlayMovingAnimation();
         }
     }
 
@@ -198,6 +207,7 @@ public class Player : MonoBehaviour
             UnityOnHit?.Invoke();
             _stats.UpdateLife(-bullet.Score);
             bullet.EndLifeTime();
+            _playerAnimator.PlayOuchAnimation();
             if (_invulnerabilityCooldown != null)
             {
                 StopCoroutine(_invulnerabilityCooldown);
