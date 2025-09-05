@@ -3,7 +3,7 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "PowerUps/SpeedBoost")]
 public class PlayerSpeedBoost : PowerUp
 {
-    [SerializeField] private float multiplier = 2f;
+    [SerializeField] private float multiplier = 1.5f;
     private float originalSpeed;
 
     public override void Apply(Player player)

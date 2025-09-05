@@ -5,15 +5,17 @@
 
     public class Bullet : MonoBehaviour, IInteractable
     {
-        [SerializeField] ParticleSystem particleDestroy;
+        [SerializeField] private ParticleSystem particleDestroy, _trail, _fireWorkExplode;
         [SerializeField, Range(1,10)] private float _MAXlifeTime = 5f;
         [SerializeField, Range(1, 10)] private float _MINlifeTime = 1f;
+        [SerializeField] private float _MINSize = 0.25f;
         [SerializeField, Range(1, 5)] private float _MAXSize = 5f;
         [SerializeField, Range(1, 100)] private int _MAXScore = 2;
-        [SerializeField, Range(1f, 10f)] private float _MAXSpeed = 4f;
+        [SerializeField, Range(0.1f, 10f)] private float _MAXSpeed = 4f;
         [SerializeField] Rigidbody2D rb;
         [SerializeField] private SpriteRenderer _renderer;
         [SerializeField] PhysicsMaterial2D _bouncyMaterial, _defaultMaterial;
+        [SerializeField] CircleCollider2D _collider;
 
         public UnityEvent UnityOnDestroy;
         
@@ -23,7 +25,7 @@
         float _speed = 0f;
 	    Player _shooter;
         private Coroutine _lifeTimeRoutine;
-        private bool _isBouncy = false;
+        private bool _isBouncy = false, _isFireWorks;
         private float _defaultSize = 0f;
         private float _initialLifeTime;
         
@@ -31,11 +33,14 @@
         public Player Shooter => _shooter;
         public SpriteRenderer Renderer => _renderer;
 
+        public bool IsFireWork = false;
+
         public void InitShooter(Player shooter)
         {
             _defaultSize = _size;
             _shooter = shooter;
             SetBouncy(shooter.HasBouncyBullets);
+            SetFireWorks(shooter.HasFireWork);
         }
         
         public void SetBouncy(bool enabled)
@@ -44,12 +49,17 @@
             rb.sharedMaterial = enabled ? _bouncyMaterial : _defaultMaterial;
         }
 
+        public void SetFireWorks(bool enabled)
+        {
+            _isFireWorks = enabled;
+        }
+
         public void StartLifeTime(float timePressed, Vector2 direction)
         {
             _lifeTime = Mathf.Lerp(_MINlifeTime, _MAXlifeTime, timePressed);
             _initialLifeTime = _lifeTime;
             _speed = Mathf.Lerp(_speed, _MAXSpeed, timePressed);
-            _size = Mathf.Lerp(_size, _MAXSize, timePressed);
+            _size = Mathf.Lerp(_MINSize, _MAXSize, timePressed);
             _score = _MAXScore;
             _defaultSize = _size;
             transform.localScale = new Vector3(_size, _size, _size);
@@ -73,7 +83,13 @@
 
         IEnumerator DestroyRoutine()
         {
-            yield return new WaitForSeconds(particleDestroy.main.duration * .5f);
+            if (_isFireWorks)
+            {
+                Instantiate(_fireWorkExplode, transform.position, Quaternion.identity);
+            }
+            _collider.enabled = false;
+            ParticleSystem p = Instantiate(particleDestroy, transform.position, Quaternion.identity);
+            yield return new WaitForSeconds(particleDestroy.main.duration);
             Destroy(gameObject);
         }
 
@@ -82,7 +98,13 @@
             Debug.Log("HIT");
             if(player != null) player.Hit(this);
         }
-        
+
+        private void OnCollisionEnter2D(Collision2D other)
+        {
+            if (_isBouncy || other.gameObject.GetComponent<IInteractable>() != null) return;
+            EndLifeTime();
+        }
+
         public void EndLifeTime()
         {
             rb.freezeRotation = true;

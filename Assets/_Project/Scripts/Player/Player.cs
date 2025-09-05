@@ -61,6 +61,7 @@ public class Player : MonoBehaviour
     }
 
     public bool HasBouncyBullets = false;
+    public bool HasFireWork = false;
 
     public Weapon Weapon => _weapon;
     public PlayerStats Stats => _stats;
