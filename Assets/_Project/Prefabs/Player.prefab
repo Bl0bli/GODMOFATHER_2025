@@ -986,8 +986,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _MAXLife: 10
-  _autoHealCooldown: 5
-  _autoHealSpeedinSeconds: 10
+  _autoHealCooldown: 4
+  _autoHealSpeedinSeconds: 4
   _renderer: {fileID: 6466431905634966454}
   _spriteOuch: {fileID: 0}
   _spriteDead: {fileID: 0}

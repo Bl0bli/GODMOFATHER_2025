@@ -21,6 +21,8 @@ public class PlayerStats : MonoBehaviour
     private Coroutine _shakeRoutine;
     [SerializeField, ShowIf("_debug")] private int _life;
     private Vector3 _basePos;
+    private bool _cantHeal = false;
+    
 
     
     //public int Score { get { return _score; } }
@@ -45,9 +47,12 @@ public class PlayerStats : MonoBehaviour
        transform.localScale = new Vector3(deltaScale, deltaScale, deltaScale);
        if (_life <= 0f)
        {
+           _cantHeal = true;
            _renderer.sprite = _spriteDead;
            GameManager.Instance.EndGame();
        }
+
+       if (_cantHeal) return;
        else if (_life < _MAXLife / 2)
        {
            Debug.Log("Half");
