@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2568aa660e150d348ba140fc0d445f6d, type: 3}
+  m_Name: BulletBounce
+  m_EditorClassIdentifier: 
+  _name: BulletBounce
+  _doesHaveADuration: 0
+  duration: -1
+  _icon: {fileID: -1679469897, guid: b95edd45f5c31a54aba606f497e2363a, type: 3}

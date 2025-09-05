@@ -31,8 +31,9 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0.41534692, y: 1.7304869, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_ConstrainProportionsScale: 1
+  m_Children:
+  - {fileID: 757415114643634799}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &4623874729792674926
@@ -76,10 +77,10 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
+  m_SortingLayerID: 1836748461
+  m_SortingLayer: 1
+  m_SortingOrder: 10
+  m_Sprite: {fileID: -3079722678121271134, guid: 360a438c189072d45baaf56ac032057a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -102,12 +103,43 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7ccb5587c118d664e8bbd40223095eb5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _MAXlifeTime: 2.4
+  particleDestroy: {fileID: 8822066697857058651}
+  _MAXlifeTime: 2
   _MINlifeTime: 1
-  _MAXSize: 1.4
+  _MAXSize: 1
   _MAXScore: 10
-  _MAXSpeed: 1.75
+  _MAXSpeed: 1.2
   rb: {fileID: 6719151814563405532}
+  _renderer: {fileID: 4623874729792674926}
+  _bouncyMaterial: {fileID: 6200000, guid: a1602d54b043641428126f5b6080ea5b, type: 2}
+  _defaultMaterial: {fileID: 6200000, guid: 2b558168c62722449ae4cef66360195e, type: 2}
+  UnityOnDestroy:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 3784673961596837325, guid: 8d45b5c332bc20f4aa0e494401abbdfc, type: 3}
+        m_TargetAssemblyTypeName: UnityEngine.AudioSource, UnityEngine
+        m_MethodName: PlayOneShot
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 8300000, guid: 891c63518ecb38c4ca46127741623c50, type: 3}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.AudioClip, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 8822066697857058651}
+        m_TargetAssemblyTypeName: UnityEngine.ParticleSystem, UnityEngine
+        m_MethodName: Play
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!50 &6719151814563405532
 Rigidbody2D:
   serializedVersion: 5
@@ -173,7 +205,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
+    oldSize: {x: 0.93, y: 0.93}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -181,3 +213,94 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!1001 &3249344392130413515
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 3105745532643462574}
+    m_Modifications:
+    - target: {fileID: 2852217321832790436, guid: 00f5f4b328626ab47944d0c70de576b3, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 2852217321832790436, guid: 00f5f4b328626ab47944d0c70de576b3, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 2852217321832790436, guid: 00f5f4b328626ab47944d0c70de576b3, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 2852217321832790436, guid: 00f5f4b328626ab47944d0c70de576b3, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.006
+      objectReference: {fileID: 0}
+    - target: {fileID: 2852217321832790436, guid: 00f5f4b328626ab47944d0c70de576b3, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.029
+      objectReference: {fileID: 0}
+    - target: {fileID: 2852217321832790436, guid: 00f5f4b328626ab47944d0c70de576b3, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.106831886
+      objectReference: {fileID: 0}
+    - target: {fileID: 2852217321832790436, guid: 00f5f4b328626ab47944d0c70de576b3, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 2852217321832790436, guid: 00f5f4b328626ab47944d0c70de576b3, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 2852217321832790436, guid: 00f5f4b328626ab47944d0c70de576b3, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2852217321832790436, guid: 00f5f4b328626ab47944d0c70de576b3, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2852217321832790436, guid: 00f5f4b328626ab47944d0c70de576b3, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: -90
+      objectReference: {fileID: 0}
+    - target: {fileID: 2852217321832790436, guid: 00f5f4b328626ab47944d0c70de576b3, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2852217321832790436, guid: 00f5f4b328626ab47944d0c70de576b3, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2852217321832790436, guid: 00f5f4b328626ab47944d0c70de576b3, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6303275216806446224, guid: 00f5f4b328626ab47944d0c70de576b3, type: 3}
+      propertyPath: looping
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6303275216806446224, guid: 00f5f4b328626ab47944d0c70de576b3, type: 3}
+      propertyPath: playOnAwake
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9216991922199465219, guid: 00f5f4b328626ab47944d0c70de576b3, type: 3}
+      propertyPath: m_Name
+      value: FX_Confetti
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 00f5f4b328626ab47944d0c70de576b3, type: 3}
+--- !u!4 &757415114643634799 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2852217321832790436, guid: 00f5f4b328626ab47944d0c70de576b3, type: 3}
+  m_PrefabInstance: {fileID: 3249344392130413515}
+  m_PrefabAsset: {fileID: 0}
+--- !u!198 &8822066697857058651 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 6303275216806446224, guid: 00f5f4b328626ab47944d0c70de576b3, type: 3}
+  m_PrefabInstance: {fileID: 3249344392130413515}
+  m_PrefabAsset: {fileID: 0}
