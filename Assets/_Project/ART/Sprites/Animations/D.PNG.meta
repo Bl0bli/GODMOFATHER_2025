@@ -1,16 +1,10 @@
 fileFormatVersion: 2
-guid: 34fa5589a70ccaf4cbff714b42c54c4e
+guid: 52b78e1144aed58439931daafacee5c2
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 888177649405867184
-    second: malus_breathingbar_0
-  - first:
-      213: -3559268277714616602
-    second: malus_breathingbar_1
-  - first:
-      213: -8677758321647164243
-    second: malus_breathingbar_2
+      213: -962488092458481032
+    second: D_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -106,34 +100,12 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: malus_breathingbar_0
+      name: D_0
       rect:
         serializedVersion: 2
-        x: 11
-        y: 225
-        width: 26
-        height: 25
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 0b4374acdd0735c00800000000000000
-      internalID: 888177649405867184
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: malus_breathingbar_1
-      rect:
-        serializedVersion: 2
-        x: 23
+        x: 46
         y: 0
-        width: 70
+        width: 171
         height: 231
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -143,30 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 6eef086fb50fa9ec0800000000000000
-      internalID: -3559268277714616602
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: malus_breathingbar_2
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 186
-        width: 36
-        height: 34
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: da4e78f78c8629780800000000000000
-      internalID: -8677758321647164243
+      spriteID: 87a087ced2e84a2f0800000000000000
+      internalID: -962488092458481032
       vertices: []
       indices: 
       edges: []
@@ -184,10 +134,7 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable:
-      malus_breathingbar_0: 888177649405867184
-      malus_breathingbar_1: -3559268277714616602
-      malus_breathingbar_2: -8677758321647164243
+    nameFileIdTable: {}
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
