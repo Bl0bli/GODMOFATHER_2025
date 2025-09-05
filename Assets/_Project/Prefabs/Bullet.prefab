@@ -120,31 +120,7 @@ MonoBehaviour:
   _collider: {fileID: 2853760679274443807}
   UnityOnDestroy:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 3019838715659155967}
-        m_TargetAssemblyTypeName: UnityEngine.AudioSource, UnityEngine
-        m_MethodName: Play
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: UnityEngine.ParticleSystem, UnityEngine
-        m_MethodName: Play
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
   IsFireWork: 0
 --- !u!50 &6719151814563405532
 Rigidbody2D:
@@ -186,7 +162,7 @@ AudioSource:
   m_audioClip: {fileID: 8300000, guid: 891c63518ecb38c4ca46127741623c50, type: 3}
   m_Resource: {fileID: 8300000, guid: 891c63518ecb38c4ca46127741623c50, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.75
+  m_Volume: 0.25
   m_Pitch: 1
   Loop: 0
   Mute: 0
