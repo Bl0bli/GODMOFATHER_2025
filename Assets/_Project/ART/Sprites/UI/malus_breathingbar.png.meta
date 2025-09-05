@@ -184,7 +184,10 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      malus_breathingbar_0: 888177649405867184
+      malus_breathingbar_1: -3559268277714616602
+      malus_breathingbar_2: -8677758321647164243
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
