@@ -38,6 +38,7 @@ public class Player : MonoBehaviour
     [SerializeField] private PlayerStats _stats;
     [SerializeField] private SpriteRenderer _renderer;
     [SerializeField] private Slider _slider;
+    [SerializeField] private Animator _animator;
     
     private List<PowerUp> activeEffects = new List<PowerUp>();
     private float _timePressed = 0f;
@@ -59,6 +60,8 @@ public class Player : MonoBehaviour
         set{_renderer = value;}
     }
 
+    public bool HasBouncyBullets = false;
+
     public Weapon Weapon => _weapon;
     public PlayerStats Stats => _stats;
     public int PlayerID => _playerID;
@@ -68,6 +71,8 @@ public class Player : MonoBehaviour
     private void Start()
     {
         _playerID = GameManager.Instance.GetPlayerID(this);
+        DontDestroyOnLoad(gameObject);
+        transform.position = new Vector3(-2666565, 0, 0);
     }
 
     private void OnValidate()
@@ -83,6 +88,14 @@ public class Player : MonoBehaviour
 
     private void FixedUpdate()
     {
+        if (_moveInput != Vector2.zero)
+        {
+            _animator.SetBool("isMoving", true);
+        }
+        else
+        {
+            _animator.SetBool("isMoving", false);
+        }
         Vector2 targetVelocity = _moveInput.normalized * _MAXSpeed;
         
         _currentVelocity = Vector2.Lerp(_currentVelocity, targetVelocity, (_moveInput.sqrMagnitude > 0.1f ? _acceleration : _deceleration) * Time.fixedDeltaTime);
@@ -147,7 +160,8 @@ public class Player : MonoBehaviour
         while (_timePressed < _MAXTimePressed)
         {
             _timePressed += Time.deltaTime;
-            _slider.value = Mathf.InverseLerp(0, _MAXTimePressed, _timePressed);
+            float t = Mathf.InverseLerp(0, _MAXTimePressed, _timePressed);
+            _slider.value = Mathf.Lerp(0, 1, t);
             UnityOnCharge?.Invoke();
             yield return null;
         }
@@ -229,13 +243,14 @@ public class Player : MonoBehaviour
 
     public void ActivatePowerUp(PowerUp effect)
     {
-        if (effect.Duration <= 0f)
+        if (!effect.DoesHaveADuration)
         {
             effect.Apply(this);
             activeEffects.Add(effect);
         }
         else
         {
+            Debug.Log("LifetimePowerUp");
             StartCoroutine(HandlePowerUp(effect));
         }
     }
